@@ -16,7 +16,7 @@
 @banff_1 = Attraction.create(:name => "Lake Louise", :admission => "Free", :webpage => "Lake Louise URL", :place_id => @banff.id)
 
 
-@user1 = User.create(:name => "Grace", :place_id => @sandiego.id, :password => "password", :password_confirmation => "password_confirmation")
+@user1 = User.create!(:name => "Grace", :place_id => @sandiego.id, :email => "vocalise@gmail.com", :password => "password", :password_confirmation => "password")
 @user1_vacation1 = Vacation.create(:user_id => 1, :name => "North America!")
 @user1_vacation1_leg1 = Leg.create(:vacation_id => @user1_vacation1.id, :arrival_place_id => @seattle.id, :departure_place_id => @sandiego.id)
 @user1_vacation1_leg2 = Leg.create(:vacation_id => @user1_vacation1.id, :arrival_place_id => @banff.id, :departure_place_id => @seattle.id)
