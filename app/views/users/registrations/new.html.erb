@@ -8,10 +8,11 @@
     <%= f.text_field :name, autofocus: true, autocomplete: "enter name"%>
   </div>
 
-  <div class="field">
-    <%= f.label :home_city %><br />
-  </div>
 
+  <div class="field">
+    <%= f.label :home %><br />
+    <%= f.collection_select :place_id, Place.all, :id, :city_name %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
