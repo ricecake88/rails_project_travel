@@ -1,2 +1,8 @@
 <!-- all vacations are spelled out here -->
 vacations/index.html.erb
+
+<%= @vacations.each do |vacation| %>
+    <%= @vacation.name %>
+    <%= @vacation.start_date %>
+    <%= @vacation.end_date %>
+<% end %>

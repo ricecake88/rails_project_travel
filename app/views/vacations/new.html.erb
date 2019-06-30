@@ -1,2 +1,15 @@
 <!-- create a new vacation -->
 vacations/new.html.erb
+
+<%= form_for new_vacation_path do |f| %>
+    <%= f.label :name, "Trip Name" %><br/>
+    <%= f.text_field :name %><br/>
+
+    <%= f.label :start_date, "First Day Of Trip" %><br/>
+    <%= f.date_select :start_date %><br />
+    
+    <%= f.label :end_date, "Last Day of Trip" %><br/>
+    <%= f.date_select :end_date %><br />
+
+    <%= f.submit "Submit" %>
+<% end %>
