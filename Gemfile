@@ -21,6 +21,11 @@ gem 'city-state'
 
 #Testing out Devise for Authentication
 gem 'devise'
+gem 'omniauth-oauth2'
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
+gem 'thin'
+gem 'pry'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

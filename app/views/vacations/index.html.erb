@@ -1,8 +1,26 @@
 <!-- all vacations are spelled out here -->
-vacations/index.html.erb
+Location: vacations/index.html.erb
 
-<%= @vacations.each do |vacation| %>
-    <%= @vacation.name %>
-    <%= @vacation.start_date %>
-    <%= @vacation.end_date %>
+<h1>Hello, <%= current_user.first_name %></h1>
+
+<nav>
+  <% if user_signed_in? %>
+    <li>
+    <%= link_to('New', vacations_path) %>
+    </li>
+    <li>
+    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to('Login', new_user_session_path) %>
+    </li>
+  <% end %>
+</nav>
+
+<p>
+<% @vacations.each do |vacation| %>
+    Name: <%= vacation.name %>,
+    <%= vacation.start_date %> - <%= vacation.end_date %><br/>
 <% end %>
+</p>
