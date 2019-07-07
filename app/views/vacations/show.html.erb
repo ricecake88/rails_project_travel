@@ -1,1 +1,13 @@
 vacations/show.html.erb
+<%= render 'users/nav'%>
+
+<h1><%= @vacation.name %></h1>
+<p>
+<% if @vacation.start_date? %>
+    <%= @vacation.start_date %>
+    <%= @vacation.end_date %>
+<% end %>
+</p>
+
+<%= link_to "Delete", vacation_path(@vacation), method: :delete %>
+<%= link_to "Edit", edit_vacation_path(@vacation) %>
