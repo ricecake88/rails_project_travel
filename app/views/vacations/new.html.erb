@@ -1,7 +1,8 @@
 <!-- create a new vacation -->
 vacations/new.html.erb
+<%= render 'users/nav'%>
 
-<%= form_for new_vacation_path do |f| %>
+<%= form_for @vacation do |f| %>
     <%= f.label :name, "Trip Name" %><br/>
     <%= f.text_field :name %><br/>
 
