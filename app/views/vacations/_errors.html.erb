@@ -1,0 +1,5 @@
+<% if !@vacation.errors.empty? %>
+    Unable to Create Vacation<br/>
+  <% message = @vacation.errors.messages.map{|k,v| v}.join(' ') %>
+  <%= message %>
+<% end %>

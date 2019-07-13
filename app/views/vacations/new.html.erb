@@ -1,6 +1,7 @@
 <!-- create a new vacation -->
 vacations/new.html.erb
-<%= render 'users/nav'%>
+<%= render 'users/nav' %>
+<%= render 'errors' %>
 
 <%= form_for @vacation do |f| %>
     <%= f.label :name, "Trip Name" %><br/>
@@ -14,3 +15,4 @@ vacations/new.html.erb
 
     <%= f.submit "Submit" %>
 <% end %>
+

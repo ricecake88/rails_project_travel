@@ -1,7 +1,7 @@
 class VacationsController < ApplicationController
 
     def index
-        @vacations = Vacation.all
+        @vacations = current_user.vacations
     end
 
     def new
@@ -18,20 +18,22 @@ class VacationsController < ApplicationController
 
     def create
        @vacation = Vacation.new(vacation_params)
-       @vacation.user = current_user
+       @vacation.user = current_user  
        if @vacation.save
         flash[:notice] = "Vacation Created."
         redirect_to vacation_path(@vacation)
        else
-        flash[:notice] = "Test"
-        redirect_to root_path
+        render :new
        end
     end
 
     def update
         @vacation = Vacation.find_by(:id => params[:id])
-        @vacation.update(vacation_params)
-        redirect_to vacation_path(@vacation)
+        if @vacation.update(vacation_params)
+            redirect_to vacation_path(@vacation)
+        else
+            render :edit
+        end
     end
 
     def destroy
