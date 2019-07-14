@@ -1,0 +1,6 @@
+vacations/:id/legs/index
+
+<% @legs.each do |leg| %>
+    <%= leg.arrival_city_name %>
+    <%= link_to leg.vacation.name, vacation_legs_path(leg.vacation)%>
+<% end %>

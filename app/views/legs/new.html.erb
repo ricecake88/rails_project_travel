@@ -1,6 +1,7 @@
-legs/new
+legs/new.html
 
-<%= form_for new_leg_path(@leg) do |f| %>
-    <%= f.text_field :city_name %>
+<%= form_for @leg do |f| %>
+    <%= f.hidden_field :vacation_id %>
+    Arrival City Name: <%= f.text_field :arrival_city_name %><br/>
     <%= f.submit "Submit Leg" %>
 <% end %>
