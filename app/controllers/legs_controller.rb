@@ -1,31 +1,35 @@
 class LegsController < ApplicationController
-    def index
-        if (params[:vacation_id])
-            @legs = Vacation.find_by(:id => params[:vacation_id]).legs
-        else
-            flash[:notice] = "Cannot show this page"
-        end
-    end
 
     def new
-        @leg = Leg.new(:vacation_id => params[:vacation_id])
+        @leg = Leg.new
     end
 
     def show
         @leg = Leg.find_by(:id => params[:id])
-        binding.pry
     end
 
     def create
-        if params[:vacation_id]
-        else
-        end
         @leg = Leg.new(leg_params)
+        binding.pry
         if @leg.save!
-            redirect_to vacation_leg_path(@leg.vacation)
+            binding.pry
+            redirect_to leg_path(@leg)
         else
-            flash[:notice] = "Fail"
+            flash[:notice] = "Fail creation of Leg"
             render new
+        end
+    end
+
+    def edit
+        @leg = Leg.find_by(:id => params[:id])
+    end
+
+    def update
+        @leg = Leg.find_by(:id => params[:id])
+        if @leg.update(leg_params)
+            redirect_to leg_path(@leg)
+        else
+            render :edit
         end
     end
 
