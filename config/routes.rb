@@ -7,14 +7,15 @@ Rails.application.routes.draw do
   #  resources :itinerary_items, only: [:show, :index]
   #end
 
-  resources :vacations  do
-    resources :legs, only: [:show, :index, :new]
+  resources :vacations
+
+  resources :legs do
+    resources :itinerary_items, only: [:show, :index, :new, :create, :edit]
   end
 
-  resources :legs, only: [:create]
   resources :itinerary_items
 
-  devise_for :users, :controllers => { 
+  devise_for :users, :controllers => {
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
 

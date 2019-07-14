@@ -1,0 +1,12 @@
+itinerary_items/edit
+<%= render 'users/nav'%>
+
+<%= form_for @itinerary_item do |f| %>
+<% binding.pry %>
+    <%= f.hidden_field :leg_id , value: @itinerary_item.leg_id%><br/>
+    Day of Trip
+    <%= f.number_field :day_of_trip, min: 1 %><br/>
+    Time of Activity<br/>
+    <%= f.datetime_select :time %><br/>
+    <%= f.submit "Submit"%><br/>
+<% end %>
