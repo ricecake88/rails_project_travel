@@ -8,13 +8,11 @@ Rails.application.routes.draw do
   #end
 
   resources :vacations  do
-    resources :legs, only: [:show, :index] do
-      resources :itinerary_items, only: [:show, :index]
-    end
+    resources :legs, only: [:show, :index, :new]
   end
 
-  resources :legs
-  resources :itinerary_items, only: [:new, :show, :index, :edit, :delete, :update]
+  resources :legs, only: [:create]
+  resources :itinerary_items
 
   devise_for :users, :controllers => { 
     omniauth_callbacks: 'users/omniauth_callbacks',
