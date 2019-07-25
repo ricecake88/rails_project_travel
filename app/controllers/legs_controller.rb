@@ -10,9 +10,7 @@ class LegsController < ApplicationController
 
     def create
         @leg = Leg.new(leg_params)
-        binding.pry
         if @leg.save!
-            binding.pry
             redirect_to leg_path(@leg)
         else
             flash[:notice] = "Fail creation of Leg"
