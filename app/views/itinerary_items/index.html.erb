@@ -1,0 +1,6 @@
+legs/:id/itinerary_items/
+<%= render 'users/nav'%>
+
+<%= @itinerary_items.each do |item| %>
+    <%= item.time %>
+<% end %>

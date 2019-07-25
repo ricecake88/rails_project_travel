@@ -2,9 +2,20 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'vacations#index'
 
+  #resources :vacations
+  #resources :legs, only: [:show, :index] do
+  #  resources :itinerary_items, only: [:show, :index]
+  #end
+
   resources :vacations
 
-  devise_for :users, :controllers => { 
+  resources :legs do
+    resources :itinerary_items, only: [:show, :index, :new, :create, :edit]
+  end
+
+  resources :itinerary_items
+
+  devise_for :users, :controllers => {
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
 

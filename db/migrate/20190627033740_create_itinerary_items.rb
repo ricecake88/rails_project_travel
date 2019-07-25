@@ -2,7 +2,7 @@ class CreateItineraryItems < ActiveRecord::Migration[5.2]
   def change
     create_table :itinerary_items do |t|
       t.integer :leg_id
-      t.integer :vacation_id
+      #t.integer :vacation_id
       t.integer :day_of_trip
 
       t.datetime :time      

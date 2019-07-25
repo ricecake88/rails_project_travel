@@ -6,8 +6,12 @@ vacations/show.html.erb
 <% if @vacation.start_date? %>
     <%= @vacation.start_date %>
     <%= @vacation.end_date %>
+    <% @vacation.legs.each do |leg| %>
+        <h2><%= link_to leg.arrival_city_name, leg_path(leg) %></h2>
+    <% end %>
 <% end %>
 </p>
 
-<%= link_to "Delete", vacation_path(@vacation), method: :delete %>
-<%= link_to "Edit", edit_vacation_path(@vacation) %>
+<%= link_to "Delete Vacation", vacation_path(@vacation), method: :delete %>
+<%= link_to "Edit Vacation", edit_vacation_path(@vacation) %>
+<%= link_to "Add a Leg", new_leg_path %>
