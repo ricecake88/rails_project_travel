@@ -24,9 +24,10 @@ class ItineraryItemsController < ApplicationController
     end
 
     def edit
-        if params[:leg_id] && !Leg.exists?(params[:leg_id])
+         if params[:leg_id] && !Leg.exists?(params[:leg_id])
             redirect_to legs_path, alert: "Leg Not Found"
         else
+            @leg = Leg.find_by(:id => params[:leg_id])
             @itinerary_item = ItineraryItem.find_by(:id => params[:id])
         end
     end
@@ -43,6 +44,9 @@ class ItineraryItemsController < ApplicationController
         end
     end
 
+    def update
+    end
+    
     private
     def itinerary_item_params
         params.require(:itinerary_item).permit(:leg_id, :time, :day_of_trip)
