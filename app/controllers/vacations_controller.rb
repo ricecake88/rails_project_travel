@@ -18,7 +18,7 @@ class VacationsController < ApplicationController
 
     def create
        @vacation = Vacation.new(vacation_params)
-       @vacation.user = current_user  
+       @vacation.user = current_user
        if @vacation.save
         flash[:notice] = "Vacation Created."
         redirect_to vacation_path(@vacation)
