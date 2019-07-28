@@ -11,7 +11,8 @@ legs/show
     <p>
     Day <%= item.day_of_trip %><br/>
     Activity Time: <%= item.time %><br/>
-    <%= link_to "Edit Item", edit_leg_itinerary_item_path(@leg, item) %><br/>
+    <%= link_to "Edit Item", edit_leg_itinerary_item_path(@leg, item) %> 
+    <%= link_to "Delete Item", legs_path <br/> %>
     </p>
 <% end %>
 <p>
