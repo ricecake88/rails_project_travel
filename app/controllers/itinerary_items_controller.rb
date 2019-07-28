@@ -11,7 +11,7 @@ class ItineraryItemsController < ApplicationController
         if params[:leg_id] && !Leg.exists?(params[:leg_id])
             redirect_to legs_path, alert: "Leg Not Found."
         else
-            @itinerary_item = ItineraryItem.new(:leg_id => params[:leg_id])        
+            @itinerary_item = ItineraryItem.new(:leg_id => params[:leg_id])
         end
     end
 
@@ -46,7 +46,14 @@ class ItineraryItemsController < ApplicationController
 
     def update
     end
-    
+
+    def destroy
+        @item = ItineraryItem.find_by(:id => params[:id])
+        @item.destroy
+        flash[:notice] = "Item deleted."
+        redirect_to legs_path
+    end
+
     private
     def itinerary_item_params
         params.require(:itinerary_item).permit(:leg_id, :time, :day_of_trip)
