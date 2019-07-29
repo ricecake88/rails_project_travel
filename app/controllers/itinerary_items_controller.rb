@@ -45,6 +45,14 @@ class ItineraryItemsController < ApplicationController
     end
 
     def update
+        if params[:itinerary_item][:leg_id]
+            @itinerary_item = ItineraryItem.find_by(:id => params[:id])
+            if @itinerary_item.update(itinerary_item_params)
+                redirect_to leg_itinerary_item_path(@itinerary_item.leg, @itinerary_item)
+            else
+                redirect_to edit_leg_itinerary_item_path(@leg), alert: "Could Not Edit Item."
+            end
+        end
     end
 
     def destroy
