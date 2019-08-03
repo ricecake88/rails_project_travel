@@ -1,6 +1,8 @@
 legs/:id/itinerary_items/:id
 <%= render 'users/nav'%>
 
-<h1>Itinerary Item</h1> 
+<h1>Itinerary Item</h1>
 Day of Trip: <%= @itinerary_item.day_of_trip %>
 Activity Time: <%= @itinerary_item.time %>
+
+<%= link_to "View All Items", leg_itinerary_items_path %>
