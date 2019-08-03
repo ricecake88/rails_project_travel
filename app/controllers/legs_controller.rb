@@ -42,6 +42,14 @@ class LegsController < ApplicationController
         end
     end
 
+    def destroy
+        @leg = Leg.find_by(:id => params[:id])
+        @vacation = @leg.vacation
+        @leg.destroy
+        flash[:notice] = "Leg Deleted."
+        redirect_to vacation_path(@vacation)
+    end
+
     private
     def leg_params
         params.require(:leg).permit(:arrival_city_name, :vacation_id)
