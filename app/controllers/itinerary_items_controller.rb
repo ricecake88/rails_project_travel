@@ -1,7 +1,7 @@
 class ItineraryItemsController < ApplicationController
     def index
         if params[:leg_id]
-            @itinerary_items = Leg.find_by(:id => params[:leg_id]).itinerary_items
+            @itinerary_items = ItineraryItem.sort(params[:leg_id])
         else
             flash[:notice] = "Not used."
         end
