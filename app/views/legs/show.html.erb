@@ -4,6 +4,10 @@ legs/show
 <h1><%= link_to @leg.vacation.name, vacation_path(@leg.vacation) %></h1>
 <h2>Arrival City: <%= @leg.arrival_city_name %></h2>
 <%= link_to "Edit Leg", edit_leg_path(@leg) %><br/>
+<%= link_to "Add Leg", new_leg_path(@leg) %><br/>
+<%= link_to "Delete Leg", leg_path(@leg), method: :delete %><br/>
+
+
 <h3>Itineraries</h3>
 
 
@@ -11,7 +15,7 @@ legs/show
     <p>
     Day <%= item.day_of_trip %><br/>
     Activity Time: <%= item.time %><br/>
-    <%= link_to "Edit Item", edit_leg_itinerary_item_path(@leg, item) %> 
+    <%= link_to "Edit Item", edit_leg_itinerary_item_path(@leg, item) %>
     <%= link_to "Delete Item", legs_path %><br/>
     </p>
 <% end %>
