@@ -2,9 +2,10 @@ legs/edit
 <%= render 'users/nav'%>
 
 <%= form_for @leg do |f| %>
-    Arrival City Name: <br/>
+    <%= f.label :arrival_city_name, "Arrival City Name:" %><br/>
     <%= f.text_field :arrival_city_name %><br/>
-    Vacation: <br/>
+
+    <%= f.label :vacation_id, "Vacation:" %><br/>
     <%= f.collection_select :vacation_id, current_user.vacations, :id, :name%><br/>
     <%= f.submit "Submit Leg" %>
 <% end %>

@@ -2,6 +2,6 @@ legs/:id/itinerary_items/
 <%= render 'users/nav'%>
 
 <% @itinerary_items.each do |item| %>
-    <%= item.day_of_trip %><br/>
-    <%= item.time %><br/>
+    Day: <%= item.day_of_trip %><br/>
+    Time: <%= item.time %><br/>
 <% end %>

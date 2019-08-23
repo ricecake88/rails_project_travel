@@ -4,9 +4,13 @@ vacations/edit.html.erb
 <%= render 'users/nav' %>
 <%= render 'errors' %>
 <%= form_for(@vacation) do |f| %>
-    <label>Name:</label>
+    <%= f.label :name, "Name:" %><br/>
     <%= f.text_field :name %><br/>
+    <%= f.label :start_date, "Start Date" %><br/>
     <%= f.datetime_select :start_date %><br/>
+
+    <%= f.label :end_date, "End Date"%><br/>
     <%= f.datetime_select :end_date %><br/>
+
     <%= f.submit "Edit Vacation Details"%>
 <% end %>

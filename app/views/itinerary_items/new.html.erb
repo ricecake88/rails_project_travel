@@ -3,9 +3,12 @@ legs/:id/itinerary_items/new
 
 <%= form_for @itinerary_item do |f| %>
     <%= f.hidden_field :leg_id , value: @itinerary_item.leg_id%><br/>
-    Day of Trip
+
+    <%= f.label :day_of_trip, "Day of Trip" %><br/>
     <%= f.number_field :day_of_trip, min: 1 %><br/>
-    Time of Activity<br/>
+
+    <%= f.label :time, "Time of Activity" %><br/>
     <%= f.datetime_select :time %><br/>
+
     <%= f.submit "Submit"%><br/>
 <% end %>
