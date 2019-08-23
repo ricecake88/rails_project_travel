@@ -16,15 +16,12 @@ class LegsController < ApplicationController
     end
 
     def create
-        if params[:vacation_id]
-            @leg = Leg.new(leg_params)
-        else
-        end
         @leg = Leg.new(leg_params)
         if @leg.save!
+            @leg.vacation = Vacation.find_by(:id => params[:leg][:vacation_id])
             redirect_to leg_path(@leg)
         else
-            flash[:notice] = "Fail creatuib if keg"
+            flash[:notice] = "Fail creating new leg"
             render new
         end
     end
