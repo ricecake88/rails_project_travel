@@ -26,6 +26,8 @@ class PlacesController < ApplicationController
 
     def update
         @place = Place.find_by(:id => params[:id])
+        binding.pry
+        @place.update(places_params)
     end
 
     def destroy

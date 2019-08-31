@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :itinerary_items
-
+  resources :places
+  
   devise_for :users, :controllers => {
     omniauth_callbacks: 'users/omniauth_callbacks',
   }

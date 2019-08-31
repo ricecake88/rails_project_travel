@@ -2,6 +2,7 @@
   <% if user_signed_in? %>
     <li><%= link_to('Home', vacations_path) %></li>
     <li><%= link_to('New Vacation', new_vacation_path) %></li>
+    <li><%= link_to('Places', places_path) %></li>
     <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
   <% else %>
     <li>
