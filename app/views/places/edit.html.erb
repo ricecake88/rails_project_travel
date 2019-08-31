@@ -1,1 +1,7 @@
 places/edit
+
+<%= form_for(@place) do |f| %>
+    <%= f.label :city_name, "City Name"%>
+    <%= f.text_field :city_name %>
+    <%= f.submit "Edit Place" %>
+<%= end %>

@@ -1,1 +1,9 @@
 places/index
+
+List of Possible Places
+
+<%= link_to("Add New Place", new_place_path) %><br/>
+
+<% @places.each do |place| %>
+    <%= place.city_name %>, <%= place.state_name %>, <%= place.country_name %>
+<% end %>
