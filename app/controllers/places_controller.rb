@@ -17,6 +17,9 @@ class PlacesController < ApplicationController
         if @place.save
             flash[:notice] = "Place created."
             redirect_to place_path(@place)
+        else
+            flash[:notice] = "Place Failed."
+            redirect_to places_path
         end
     end
 
@@ -26,7 +29,6 @@ class PlacesController < ApplicationController
 
     def update
         @place = Place.find_by(:id => params[:id])
-        binding.pry
         @place.update(places_params)
     end
 
@@ -38,7 +40,7 @@ class PlacesController < ApplicationController
 
     private
     def places_params
-        params.require(:places).permit(:city_id, :city_name)
+        params.require(:place).permit(:city_name)
     end
 
 end
