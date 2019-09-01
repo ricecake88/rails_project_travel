@@ -6,8 +6,11 @@ places/new
     <!--
     <%= f.text_field :state_name %>
     <%= f.text_field :state_code %>
-    <%= f.text_field :country_name %>
+    -->
+    <%= f.label :country_name, "Country" %><br/>
+    <%= f.text_field :country_name %><br/>
+    <!--
     <%= f.text_field :country_code %>
     -->
-    <%= f.submit "Submit Form"%>
+    <%= f.submit "Submit Form" %>
 <% end %>
