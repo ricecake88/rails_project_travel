@@ -29,7 +29,12 @@ class PlacesController < ApplicationController
 
     def update
         @place = Place.find_by(:id => params[:id])
-        @place.update(places_params)
+        if @place.update(places_params)
+            redirect_to place_path(@place)
+        else
+            flash[:notice] = "Edit Place Failed."
+            redirect_to places_path
+        end
     end
 
     def destroy
@@ -40,7 +45,7 @@ class PlacesController < ApplicationController
 
     private
     def places_params
-        params.require(:place).permit(:city_name)
+        params.require(:place).permit(:city_name, :country_name)
     end
 
 end
