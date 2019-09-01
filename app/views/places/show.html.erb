@@ -1,3 +1,6 @@
 places/show
+<%= render 'users/nav'%>
 
-<%= @place.city_name %>
+<%= @place.city_name %><br/>
+
+<%= link_to "Delete Place", place_path(@place), method: :delete %>
