@@ -2,8 +2,11 @@ places/show
 <%= render 'users/nav'%>
 
 <%= @place.city_name %><br/>
+<% @place.attractions.each do |a| %>
+    <%= a.name %>
+<% end %>
 
-<%= link_to "View all Attractions", place_attractions_path %>
+<%= link_to "View all Attractions", place_attractions_path(@place) %>
 <%= link_to "Add a new Attraction", new_place_attraction_path(@place) %>
 <%= link_to "Edit Place", edit_place_path(@place) %>
 <%= link_to "Delete Place", place_path(@place), method: :delete %>
