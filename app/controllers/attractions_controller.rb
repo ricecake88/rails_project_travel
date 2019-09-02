@@ -15,6 +15,13 @@ class AttractionsController < ApplicationController
     end
 
     def show
+        if params[:place_id]
+            @attraction = Attraction.find_by(:id => params[:id])
+            @place = @attraction.place
+        else
+            flash[:notice] = "Incorrect URL"
+            redirect_to attraction
+        end
     end
 
     def create
