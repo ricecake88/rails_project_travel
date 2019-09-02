@@ -1,0 +1,10 @@
+attractions/new
+
+<%= render 'users/nav'%>
+
+<%= form_for @attraction do |f| %>
+    <%= f.hidden_field :place_id, value: @attraction.place_id %>
+    <%= f.label :name, "Name" %><br/>
+    <%= f.text_field :name %><br/>
+    <%= f.submit "Submit Attraction" %>
+<% end %>
