@@ -5,5 +5,5 @@ attractions/index
 <p><%= @place.city_name %></p>
 
 <% @attractions.each do |attraction| %>
-    <%= link_to attraction.name, place_attraction_path(@place, attraction) %> 
+    <%= link_to attraction.name, place_attraction_path(@place, attraction) %><br/>
 <% end %>

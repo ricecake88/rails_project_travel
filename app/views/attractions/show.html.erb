@@ -1,3 +1,5 @@
 attractions/show
+<%= render 'users/nav'%>
 
-<%= @attraction.name %> <%= link_to "Edit", edit_place_attraction_path(@place, @attraction) %>
+<h1><%= @attraction.name %></h1>
+<%= link_to "Edit", edit_place_attraction_path(@place, @attraction) %> <%= link_to "Delete", attraction_path(@attraction), method: :delete %>
