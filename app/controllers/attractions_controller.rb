@@ -24,14 +24,49 @@ class AttractionsController < ApplicationController
         end
     end
 
+    def edit
+        if params[:place_id]
+            @attraction = Attraction.find_by(:id => params[:id])
+            @place = @attraction.place
+        else
+            flash[:notice] = "Invalid URL"
+        end
+    end
+
     def create
-        @attraction = Attraction.new(attraction_params)
-        if @attraction.save!
+        if params[:attraction][:place_id]
+            @attraction = Attraction.new(attraction_params)
+            binding.pry
+            if @attraction.save
+                flash[:notice] = "Attraction Created."
+                redirect_to place_attraction_path(@attraction.place, @attraction)
+            else
+                flash[:notice] = "Adding Attraction Failed."
+                redirect_to place_path(@attraction.place)
+            end
+        else
+            flash[:notice] = "Invalid URL"
+            redirect_to places_path
+        end
+    end
+
+    def update
+        @attraction = Attraction.find_by(:id => params[:id])
+        if @attraction.update(attraction_params)
+            flash[:notice] = "Updated Attraction"
             redirect_to place_attraction_path(@attraction.place, @attraction)
         else
-            flash[:notice] = "Adding Attraction Failed."
-            redirect_to place_path(@place)
+            flash[:notice] = "Updating Attraction Failed"
+            redirect_to place_attractions_path(@attraction.place)
         end
+    end
+
+    def destroy
+        @attraction = Attraction.find_by(:id => params[:id])
+        @place = @attraction.place
+        @attraction.destroy
+        flash[:notice]= "Attraction Deleted."
+        redirect_to place_attractions_path(@place)
     end
 
     private
