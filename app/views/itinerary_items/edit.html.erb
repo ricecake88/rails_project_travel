@@ -10,5 +10,12 @@ itinerary_items/edit
     <%= f.label :time, "Time of Activity" %><br/>
     <%= f.datetime_select :time %><br/>
 
+    <%= f.label :type_of_activity, "Type of Activity" %><br/>
+    <%= f.select :type_of_activity, ['Flight', 'Event']%><br/>
+
+    <%= f.label :attraction_id, "Attraction" %><br/>
+    <%= f.collection_select :attraction_id, @attractions, :id, :name%><br/>
+
+
     <%= f.submit "Submit"%><br/>
 <% end %>
