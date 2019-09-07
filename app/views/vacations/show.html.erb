@@ -7,7 +7,7 @@ vacations/show.html.erb
     <%= @vacation.start_date %>
     <%= @vacation.end_date %>
     <% @vacation.legs.each do |leg| %>
-        <h2><%= link_to leg.arrival_city_name, leg_path(leg) %></h2>
+        <h2><%= link_to "#{leg.departure_city_name} - #{leg.arrival_city_name}", leg_path(leg) %></h2>
     <% end %>
 <% end %>
 </p>
