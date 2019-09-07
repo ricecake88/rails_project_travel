@@ -1,9 +1,10 @@
 <nav>
   <% if user_signed_in? %>
+    <p>User Navigation</p>
     <li><%= link_to('Home', vacations_path) %></li>
     <li><%= link_to('New Vacation', new_vacation_path) %></li>
-    <li><%= link_to('Places', places_path) %></li>
     <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+    <li><%= link_to('All Places', places_path) %></li>
   <% else %>
     <li>
     <%= link_to('Login', new_user_session_path) %>
