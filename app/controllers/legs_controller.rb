@@ -4,11 +4,13 @@ class LegsController < ApplicationController
             @legs = Vacation.find_by(:id => params[:vacation_id]).legs
         else
             flash[:notice] = "Cannot show this page"
+            redirect_to legs_path
         end
     end
 
     def new
         @leg = Leg.new(:vacation_id => params[:vacation_id])
+        @places = Place.all
     end
 
     def show
@@ -17,8 +19,10 @@ class LegsController < ApplicationController
 
     def create
         @leg = Leg.new(leg_params)
+        @leg.vacation = Vacation.find_by(:id => params[:leg][:vacation_id])
+        @place = Place.find_by(:city_name => leg_params[:arrival_city_name])
         if @leg.save!
-            @leg.vacation = Vacation.find_by(:id => params[:leg][:vacation_id])
+            @leg.vacation.places << @place
             redirect_to leg_path(@leg)
         else
             flash[:notice] = "Fail creating new leg"
@@ -28,6 +32,7 @@ class LegsController < ApplicationController
 
     def edit
         @leg = Leg.find_by(:id => params[:id])
+        @places = Place.all
     end
 
     def update
@@ -49,7 +54,7 @@ class LegsController < ApplicationController
 
     private
     def leg_params
-        params.require(:leg).permit(:arrival_city_name, :vacation_id)
+        params.require(:leg).permit(:arrival_city_name, :departure_city_name, :vacation_id)
     end
 
 end

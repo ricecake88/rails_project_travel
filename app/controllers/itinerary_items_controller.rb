@@ -12,6 +12,7 @@ class ItineraryItemsController < ApplicationController
             redirect_to legs_path, alert: "Leg Not Found."
         else
             @itinerary_item = ItineraryItem.new(:leg_id => params[:leg_id])
+            @attractions = Attraction.locations_in_place(@itinerary_item.leg)
         end
     end
 
@@ -29,6 +30,7 @@ class ItineraryItemsController < ApplicationController
         else
             @leg = Leg.find_by(:id => params[:leg_id])
             @itinerary_item = ItineraryItem.find_by(:id => params[:id])
+            @attractions = Attraction.locations_in_place(@itinerary_item.leg)
         end
     end
 
@@ -57,14 +59,15 @@ class ItineraryItemsController < ApplicationController
 
     def destroy
         @item = ItineraryItem.find_by(:id => params[:id])
+        @leg = @item.leg
         @item.destroy
         flash[:notice] = "Item deleted."
-        redirect_to legs_path
+        redirect_to leg_path(@leg)
     end
 
     private
     def itinerary_item_params
-        params.require(:itinerary_item).permit(:leg_id, :time, :day_of_trip)
+        params.require(:itinerary_item).permit(:leg_id, :time, :day_of_trip, :type_of_activity, :attraction_id)
     end
 
 end
