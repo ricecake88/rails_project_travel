@@ -12,4 +12,5 @@ places/show
 <% end %>
 
 <%= link_to "View all Attractions", place_attractions_path(@place) %>
+<%= link_to "Attractions < $20", under20_path(@place) %>
 <%= link_to "Add a new Attraction", new_place_attraction_path(@place) %>
