@@ -3,6 +3,9 @@ attractions/edit
 
 <%= form_for @attraction do |f| %>
     <%= f.hidden_field :place_id, value: @place.id %>
+    <%= f.label :name, "Name" %><br/>
     <%= f.text_field :name %><br/>
+    <%= f.label :admission, "Admission" %><br/>
+    <%= f.number_field :admission %><br/>
     <%= f.submit "Edit Attraction" %>
 <% end %>

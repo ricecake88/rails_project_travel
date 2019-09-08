@@ -2,4 +2,8 @@ attractions/show
 <%= render 'users/nav'%>
 
 <h1><%= @attraction.name %></h1>
+
+<p>
+Admission: <%= @attraction.admission == 0 ? "Free" : "$#{@attraction.admission}" %>
+</p>
 <%= link_to "Edit", edit_place_attraction_path(@place, @attraction) %> <%= link_to "Delete", attraction_path(@attraction), method: :delete %>

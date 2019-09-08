@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_30_222614) do
+ActiveRecord::Schema.define(version: 2019_09_08_043553) do
 
   create_table "attractions", force: :cascade do |t|
     t.integer "place_id"
     t.string "name"
-    t.string "admission"
+    t.integer "admission"
     t.string "webpage"
     t.text "description"
     t.datetime "created_at", null: false

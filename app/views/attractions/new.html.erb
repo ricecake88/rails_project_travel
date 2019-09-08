@@ -6,5 +6,7 @@ attractions/new
     <%= f.hidden_field :place_id, value: @attraction.place_id %>
     <%= f.label :name, "Name" %><br/>
     <%= f.text_field :name %><br/>
+    <%= f.label :admission, "Admission" %><br/>
+    <%= f.number_field :admission %><br/>
     <%= f.submit "Submit Attraction" %>
 <% end %>
