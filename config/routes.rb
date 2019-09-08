@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :itinerary_items
 
+  get 'places/:place_id/attractions/over20', to: 'attractions#under20', :as => :under20
+
   resources :places do
     resources :attractions, only: [:show, :index, :new, :create, :edit]
   end
@@ -24,7 +26,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
-
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')

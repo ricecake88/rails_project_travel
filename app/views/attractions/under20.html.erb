@@ -1,0 +1,8 @@
+<%= render 'users/nav' %>
+
+<% @attractions.each do |a| %>
+    <p>
+    <%= a.name %><br>
+    <%= a.admission %><br/>
+    </p>
+<% end %>

@@ -1,6 +1,6 @@
 class AttractionsController < ApplicationController
     def index
-        if params[:place_id]
+        if params[:place_id] && Place.exists?(:id => params[:place_id])
             # need to create scope method here to find Place and Attractions
             @attractions = Attraction.where(:place_id => params[:place_id])
             @place = Place.find_by(:id => params[:place_id])
@@ -19,7 +19,7 @@ class AttractionsController < ApplicationController
             @attraction = Attraction.find_by(:id => params[:id])
             @place = @attraction.place
         else
-            flash[:notice] = "Incorrect URL"
+            flash[:notice] = "Incorrect URL."
             redirect_to attraction
         end
     end
@@ -36,7 +36,6 @@ class AttractionsController < ApplicationController
     def create
         if params[:attraction][:place_id]
             @attraction = Attraction.new(attraction_params)
-            binding.pry
             if @attraction.save
                 flash[:notice] = "Attraction Created."
                 redirect_to place_attraction_path(@attraction.place, @attraction)
@@ -69,9 +68,18 @@ class AttractionsController < ApplicationController
         redirect_to place_attractions_path(@place)
     end
 
+    def under20
+        if params[:place_id]
+            @attractions = Attraction.under_20(params[:place_id])
+        else
+            @attractions = Attraction.all
+            redirect_to attractions_path
+        end
+    end
+
     private
     
     def attraction_params
-        params.require(:attraction).permit(:name, :place_id)
+        params.require(:attraction).permit(:name, :place_id, :admission)
     end
 end
