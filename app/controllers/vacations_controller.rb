@@ -37,7 +37,7 @@ class VacationsController < ApplicationController
     end
 
     def destroy
-        @vacation = Vacation.find_by(params[:id])
+        @vacation = Vacation.find_by(:id => params[:id])
         @vacation.destroy
         flash[:notice] = "Vacation Deleted."
         redirect_to vacations_path
