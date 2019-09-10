@@ -2,11 +2,11 @@ legs/new.html
 <%= render 'users/nav'%>
 
 <%= form_for @leg do |f| %>
-    <%= f.label :departure_city_name, "Departure City Name:" %> <br/>
-    <%= f.collection_select :departure_city_name, @places, :city_name, :city_name %><br/>
+    <%= f.label :departure_place_id, "Departure City:" %> <br/>
+    <%= f.collection_select :departure_place_id, @places, :id, :city_name %><br/>
 
-    <%= f.label :arrival_city_name, "Arrival City Name:" %> <br/>
-    <%= f.collection_select :arrival_city_name, @places, :city_name, :city_name %><br/>
+    <%= f.label :arrival_place_id, "Arrival City:" %> <br/>
+    <%= f.collection_select :arrival_place_id, @places, :id, :city_name %><br/>
 
     <%= f.label :vacation_id, "Vacation:" %><br/>
     <%= f.collection_select :vacation_id, current_user.vacations, :id, :name%><br/>
