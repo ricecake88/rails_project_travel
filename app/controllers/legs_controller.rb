@@ -1,4 +1,6 @@
 class LegsController < ApplicationController
+    include ApplicationHelper
+
     def index
         if (params[:vacation_id])
             @legs = Vacation.find_by(:id => params[:vacation_id]).legs
@@ -19,8 +21,8 @@ class LegsController < ApplicationController
 
     def create
         @leg = Leg.new(leg_params)
-        Leg.insert_places(params)
         if @leg.save!
+            Leg.insert_and_update_places(@leg)
             redirect_to leg_path(@leg)
         else
             flash[:notice] = "Fail creating new leg"
@@ -54,5 +56,4 @@ class LegsController < ApplicationController
     def leg_params
         params.require(:leg).permit(:arrival_place_id, :departure_place_id, :vacation_id)
     end
-
 end
