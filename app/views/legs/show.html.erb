@@ -15,7 +15,7 @@ legs/show
     Day <%= item.day_of_trip %><br/>
     Activity Time: <%= item.time %><br/>
     Type of Activity: <%= item.type_of_activity %><br/>
-    Attraction: <%= item.attraction_id %><br/>
+    Attraction: <%= ApplicationHelper.attraction(item).name %><br/>
     <%= link_to "Edit Item", edit_leg_itinerary_item_path(@leg, item) %>
     <%= link_to "Delete Item", itinerary_item_path(item), method: :delete %><br/>
     </p>
