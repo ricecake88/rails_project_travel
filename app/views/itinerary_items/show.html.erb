@@ -5,6 +5,6 @@ legs/:id/itinerary_items/:id
 Day of Trip: <%= @itinerary_item.day_of_trip %><br/>
 Activity Time: <%= @itinerary_item.time %><br/>
 Type of Activity: <%= @itinerary_item.type_of_activity %><br/>
-Attraction: <%= @itinerary_item.attraction_id %><br/>
+Attraction: <%= ApplicationHelper.attraction(@itinerary_item).name %><br/>
 
 <%= link_to "View All Items", leg_itinerary_items_path %><br/>

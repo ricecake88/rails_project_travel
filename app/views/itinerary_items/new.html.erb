@@ -14,7 +14,11 @@ legs/:id/itinerary_items/new
     <%= f.select :type_of_activity, ['Transport', 'Event']%><br/>
 
     <%= f.label :attraction_id, "Attraction" %><br/>
-    <%= f.collection_select :attraction_id, @attractions, :id, :name%><br/>
+    <% if !@attractions.empty? %>
+        <%= f.collection_select :attraction_id, @attractions, :id, :name%><br/>
+    <% else %>
+        No Attractions Available<br/>
+    <% end %>
 
     <%= f.submit "Submit"%><br/>
 <% end %>
