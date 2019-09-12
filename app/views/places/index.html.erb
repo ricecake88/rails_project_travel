@@ -6,7 +6,5 @@ places/index
 <%= link_to("Add New Place", new_place_path) %><br/>
 
 <% @places.each do |place| %>
-    <% if !place.city_name.blank? %><%= link_to place.city_name, place_path(place) %><% end %>
-    <% if !place.state_name.blank? %><%= ",#{place.state_name}" %><% end %>
-    <% if !place.country_name.blank? %><%=", #{place.country_name}" %><% end %><br/>
+    <%= link_to "#{place.city_name}, #{place.state_name} #{place.country_name}", place_path(place) %><br/>
 <% end %>
