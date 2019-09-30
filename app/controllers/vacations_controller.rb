@@ -1,4 +1,5 @@
 class VacationsController < ApplicationController
+    include Devise::Controllers::Helpers
 
     def index
         @vacations = current_user.vacations
@@ -9,16 +10,19 @@ class VacationsController < ApplicationController
     end
 
     def show
-        @vacation = Vacation.find_by(:id => params[:id])
+        @vacation = current_user.vacations.find_by(:id => params[:id])
+       if @vacation.nil?
+        flash[:notice] = "You don't have access to view that."
+        redirect_to "/"
+       end
     end
 
     def edit
-        @vacation = Vacation.find_by(:id => params[:id])
+        @vacation = current_user.vacations.find_by(:id => params[:id])
     end
 
     def create
-       @vacation = Vacation.new(vacation_params)
-       @vacation.user = current_user
+       @vacation = current_user.vacations.new(vacation_params)
        if @vacation.save
         flash[:notice] = "Vacation Created."
         redirect_to vacation_path(@vacation)
@@ -28,19 +32,24 @@ class VacationsController < ApplicationController
     end
 
     def update
-        @vacation = Vacation.find_by(:id => params[:id])
-        if @vacation.update(vacation_params)
+        @vacation = current_user.vacations.find_by(:id => params[:id])
+        if !@vacation.present?
+            flash[:notice] = "You don't have permissions to do that."
+            redirect_to "/"
+        elsif @vacation.update(vacation_params)
             redirect_to vacation_path(@vacation)
-        else
-            render :edit
         end
     end
 
     def destroy
-        @vacation = Vacation.find_by(:id => params[:id])
-        @vacation.destroy
-        flash[:notice] = "Vacation Deleted."
-        redirect_to vacations_path
+        @vacation = current_user.vacations.find_by(:id => params[:id])
+        if @vacation.present? && @vacation.destroy
+            flash[:notice] = "Vacation Deleted."
+            redirect_to vacations_path
+        else
+            flash[:notice] = "You don't have permissions to do that."
+            redirect_to "/"
+        end
     end
 
     private
