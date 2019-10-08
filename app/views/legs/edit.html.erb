@@ -3,8 +3,9 @@ legs/edit
 
 <%= form_for @leg do |f| %>
     <%= f.label :arrival_city_name, "Arrival City Name:" %><br/>
-    <%= f.text_field :arrival_city_name %><br/>
     <%= f.collection_select :arrival_city_name, @places, :city_name, :city_name, {:selected => :arrival_city_name} %><br/>
+    <%= f.label :departure_city_name, "Departure City Name: "%><br/>
+    <%= f.collection_select :departure_city_name, @places, :city_name, :city_name, {:selected => :departure_city_name} %><br/>
     <%= f.label :vacation_id, "Vacation:" %><br/>
     <%= f.collection_select :vacation_id, current_user.vacations, :id, :name%><br/>
     <%= f.submit "Submit Leg" %>
