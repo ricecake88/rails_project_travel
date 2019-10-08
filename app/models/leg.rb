@@ -6,13 +6,18 @@ class Leg < ApplicationRecord
         vacation = Vacation.find_by(:id => leg.vacation_id)
         arrival_place = Place.find_by(:id => leg.arrival_place_id)
         departure_place = Place.find_by(:id => leg.departure_place_id)
-        if arrival_place.present? && vacation.places.include?(arrival_place)
-            vacation.places << arrival_place
+        if arrival_place.present?
+            if !vacation.places.include?(arrival_place)
+                vacation.places << arrival_place
+            end
             leg.update(:arrival_city_name => arrival_place.city_name)
         end
-        if departure_place.present? && vacation.places.include?(departure_place)
-            vacation.places << departure_place
+        if departure_place.present?
+            if !vacation.places.include?(departure_place)
+                vacation.places << departure_place
+            end
             leg.update(:departure_city_name => departure_place.city_name)
         end
     end
+
 end
