@@ -2,6 +2,11 @@ legs/:id/itinerary_items/new
 <%= render 'users/nav'%>
 
 <%= form_for @itinerary_item do |f| %>
+
+<% if @itinerary_item.errors.any? %>
+  <%= @itinerary_item.errors.full_messages %>
+<% end %>
+
     <%= f.hidden_field :leg_id , value: @itinerary_item.leg_id%><br/>
 
     <%= f.label :day_of_trip, "Day of Trip" %><br/>
@@ -11,14 +16,15 @@ legs/:id/itinerary_items/new
     <%= f.datetime_select :time %><br/>
 
     <%= f.label :type_of_activity, "Type of Activity" %><br/>
-    <%= f.select :type_of_activity, ['Transport', 'Event']%><br/>
+    <%= f.select :type_of_activity, ['Transport', 'Event', 'Food']%><br/>
 
     <%= f.label :attraction_id, "Attraction" %><br/>
-    <% if !@attractions.empty? %>
-        <%= f.collection_select :attraction_id, @attractions, :id, :name%><br/>
+    <% if @attractions.present? %>
+        <%= f.collection_select :attraction_id, @attractions, :id, :name, :prompt => true%><br/>
     <% else %>
         No Attractions Available<br/>
     <% end %>
 
     <%= f.submit "Submit"%><br/>
 <% end %>
+
