@@ -2,14 +2,14 @@ class LegsController < ApplicationController
     include ApplicationHelper
 
     def index
-        #f (params[:vacation_id])
-        #   @legs = current_user.vacations.find_by(:id => params[:vacation_id]).legs
-        #   binding.pry
-        #   @legs = Vacation.find_by(:id => params[:vacation_id]).legs
-        #else
-        #    flash[:notice] = "Cannot show this page"
-        #    redirect_to legs_path
-        #end
+        if (params[:vacation_id])
+           @legs = current_user.vacations.find_by(:id => params[:vacation_id]).legs
+           binding.pry
+           @legs = Vacation.find_by(:id => params[:vacation_id]).legs
+        else
+            flash[:notice] = "Cannot show this page"
+            redirect_to '/'
+        end
     end
 
     def new
@@ -19,11 +19,12 @@ class LegsController < ApplicationController
 
     def show
         @leg = Leg.find_by(:id => params[:id])
-        if !@leg.present? || Vacation.permit_view(current_user, @leg).empty?
+        if !(Vacation.permit_view(current_user, @leg)).present?
             flash[:notice] = "You don't have permission to do that."
             redirect_to '/'
         end
-
+        @arrival_place_name = Place.find_by(:id => @leg.arrival_place_id).city_name
+        @departure_place_name = Place.find_by(:id => @leg.departure_place_id).city_name
     end
 
     def edit
@@ -39,7 +40,7 @@ class LegsController < ApplicationController
     def create
         @leg = Leg.new(leg_params)
         if @leg.save!
-            Leg.insert_and_update_places(@leg)
+            Leg.update_vacation_places(@leg, "create")
             redirect_to leg_path(@leg)
         else
             flash[:notice] = "Failed creating new leg."
@@ -49,10 +50,14 @@ class LegsController < ApplicationController
 
     def update
         @leg = Leg.find_by(:id => params[:id])
-        if @leg.update(leg_params)
+        if @leg.present? || Vacation.permit_view(current_user, @leg).present?
+            Leg.update_vacation_places(@leg, "delete")        
+            if @leg.update!(leg_params)
+                Leg.update_vacation_places(@leg, "create")
                 redirect_to leg_path(@leg)
+            end
         else
-                render :edit
+             render :edit
         end
     end
 
