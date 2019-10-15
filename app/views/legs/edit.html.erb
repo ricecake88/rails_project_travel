@@ -7,6 +7,6 @@ legs/edit
     <%= f.label :arrival_city_id, "Arrival City:" %><br/>
     <%= f.collection_select :arrival_place_id, @places, :id, :city_name, {:selected => @leg.arrival_place_id} %><br/>
     <%= f.label :vacation_id, "Vacation:" %><br/>
-    <%= f.collection_select :vacation_id, current_user.vacations, :id, :name%><br/>
+    <%= f.collection_select :vacation_id, current_user.vacations, :id, :name, {:selected => @leg.vacation_id} %><br/>
     <%= f.submit "Submit Leg" %>
 <% end %>
