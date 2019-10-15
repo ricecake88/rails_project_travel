@@ -1,5 +1,4 @@
 class PlacesController < ApplicationController
-
     def index
         @places = Place.all
     end
@@ -41,6 +40,10 @@ class PlacesController < ApplicationController
         @place = Place.find_by(:id => params[:id])
         @place.destroy
         redirect_to places_path
+    end
+
+    def my_places
+        @places = Place.user_places(current_user)
     end
 
     private

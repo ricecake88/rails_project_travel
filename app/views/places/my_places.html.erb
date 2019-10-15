@@ -1,0 +1,10 @@
+<%= render 'users/nav' %>
+
+<% @places.each do |place| %>
+    <p>
+    <p><%= place.city_name %></p>
+    <% place.vacations.each do |vacation|%>
+        <%=  vacation.name %>
+    <% end %>
+    </p>
+<% end %>
