@@ -40,7 +40,7 @@ class LegsController < ApplicationController
     def create
         @leg = Leg.new(leg_params)
         if @leg.save!
-            Leg.update_vacation_places(@leg, "create")
+            Vacation.update_vacation_places(@leg, "create")
             redirect_to leg_path(@leg)
         else
             flash[:notice] = "Failed creating new leg."
@@ -51,9 +51,9 @@ class LegsController < ApplicationController
     def update
         @leg = Leg.find_by(:id => params[:id])
         if @leg.present? || Vacation.permit_view(current_user, @leg).present?
-            Leg.update_vacation_places(@leg, "delete")        
+            Vacation.update_vacation_places(@leg, "delete")
             if @leg.update!(leg_params)
-                Leg.update_vacation_places(@leg, "create")
+                Vacation.update_vacation_places(@leg, "create")
                 redirect_to leg_path(@leg)
             end
         else
@@ -68,6 +68,7 @@ class LegsController < ApplicationController
             redirect_to '/'
         else
             @vacation = @leg.vacation
+            Vacation.update_vacation_places(@leg, "delete")
             @leg.destroy
             flash[:notice] = "Leg Deleted."
             redirect_to vacation_path(@vacation)
