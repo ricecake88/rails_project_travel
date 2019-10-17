@@ -12,9 +12,10 @@ class VacationsController < ApplicationController
     def show
         @vacation = current_user.vacations.find_by(:id => params[:id])
        if @vacation.nil?
-        flash[:notice] = "You don't have access to view that."
-        redirect_to "/"
+            flash[:notice] = "You don't have access to view that."
+            redirect_to "/"
        end
+       @sorted_legs = Leg.sort(@vacation.id)
     end
 
     def edit

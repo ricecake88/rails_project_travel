@@ -8,6 +8,9 @@ legs/new.html
     <%= f.label :arrival_place_id, "Arrival City:" %> <br/>
     <%= f.collection_select :arrival_place_id, @places, :id, :city_name %><br/>
 
+    <%= f.label :leg_num, "Which Leg:" %><br/>
+    <%= f.number_field :leg_num, min: 1, value: 1 %><br/>
+
     <%= f.label :vacation_id, "Vacation:" %><br/>
     <%= f.collection_select :vacation_id, current_user.vacations, :id, :name%><br/>
     <%= f.submit "Submit Leg" %>
