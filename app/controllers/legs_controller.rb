@@ -23,6 +23,7 @@ class LegsController < ApplicationController
             flash[:notice] = "You don't have permission to do that."
             redirect_to '/'
         end
+        @itinerary_items = ItineraryItem.sort(@leg.id)
         @arrival_place_name = Place.find_by(:id => @leg.arrival_place_id).city_name
         @departure_place_name = Place.find_by(:id => @leg.departure_place_id).city_name
     end
