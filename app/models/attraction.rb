@@ -4,7 +4,7 @@ class Attraction < ApplicationRecord
     validates_uniqueness_of :name, scope: [:place_id], :message => 'Already entered.'
 
     def self.locations_in_place(leg)
-        Attraction.where(:place_id => Place.find_by(:city_name => leg.arrival_city_name).id)
+        @attractions = Attraction.where(:place_id => Place.find_by(:id => leg.arrival_place_id).id)
     end
 
     def self.under_20(place_id)
