@@ -78,6 +78,6 @@ class LegsController < ApplicationController
 
     private
     def leg_params
-        params.require(:leg).permit(:arrival_place_id, :departure_place_id, :vacation_id)
+        params.require(:leg).permit(:arrival_place_id, :departure_place_id, :leg_num, :vacation_id)
     end
 end
