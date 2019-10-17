@@ -29,7 +29,7 @@ class AttractionsController < ApplicationController
             @attraction = Attraction.find_by(:id => params[:id])
             @place = @attraction.place
         else
-            flash[:notice] = "Invalid URL"
+            flash[:notice] = "Invalid URL."
         end
     end
 
@@ -78,7 +78,7 @@ class AttractionsController < ApplicationController
     end
 
     private
-    
+
     def attraction_params
         params.require(:attraction).permit(:name, :place_id, :admission)
     end
