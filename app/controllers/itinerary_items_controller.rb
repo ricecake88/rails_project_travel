@@ -1,7 +1,8 @@
 class ItineraryItemsController < ApplicationController
     def index
         if params[:leg_id]
-            if (Vacation.permit_view_by_leg_id(current_user, params[:leg_id])).present?
+            @leg = Leg.find_by(:id => params[:leg_id])
+            if (Vacation.permit_view(current_user, @leg)).present?
                 @itinerary_items = ItineraryItem.sort(params[:leg_id])
             else
                 redirect_to vacations_path, alert: "You don't have permission to do that"
@@ -13,7 +14,8 @@ class ItineraryItemsController < ApplicationController
 
     def new
         if params[:leg_id]
-            if (Vacation.permit_view_by_leg_id(current_user, params[:leg_id])).present?
+            leg = Leg.find_by(:id => params[:leg_id])
+            if (Vacation.permit_view(current_user, leg)).present?
                 @itinerary_item = ItineraryItem.new(:leg_id => params[:leg_id])
                 @attractions = Attraction.locations_in_place(@itinerary_item.leg)
             else
@@ -31,18 +33,19 @@ class ItineraryItemsController < ApplicationController
     end
 
     def edit
-         if params[:leg_id] && !Leg.exists?(params[:leg_id])
-            redirect_to legs_path, alert: "Leg Not Found"
-        else
+        if params[:leg_id]
             @leg = Leg.find_by(:id => params[:leg_id])
-            @itinerary_item = ItineraryItem.find_by(:id => params[:id])
-            @attractions = Attraction.locations_in_place(@itinerary_item.leg)
+            if !Vacation.permit_view(current_user, @leg)).present?
+                redirect_to vacations_path, alert: "You don't have permission to do that."
         end
+        @itinerary_item = ItineraryItem.find_by(:id => params[:id])
+        @attractions = Attraction.locations_in_place(@itinerary_item.leg)
     end
 
     def create
         if params[:itinerary_item][:leg_id]
-            if (Vacation.permit_view_by_leg_id(current_user, params[:itinerary_item][:leg_id])).present?
+            leg = Leg.find_by(:id => params[:itinerary_item][:leg_id])
+            if (Vacation.permit_view(current_user,leg)).present?
                 @itinerary_item = ItineraryItem.new(itinerary_item_params)
                 if @itinerary_item.save
                     redirect_to leg_itinerary_item_path(@itinerary_item.leg, @itinerary_item)
@@ -58,7 +61,8 @@ class ItineraryItemsController < ApplicationController
 
     def update
         if params[:itinerary_item][:leg_id]
-            if (Vacation.permit_view_by_leg_id(current_user, params[:itinerary_item][:leg_id])).present?
+            @leg = Leg.find_by(:id => params[:itinerary_item][:leg_id])
+            if (Vacation.permit_view(current_user, @leg.id)).present?
                 @itinerary_item = ItineraryItem.find_by(:id => params[:id])
                 if @itinerary_item.update(itinerary_item_params)
                     redirect_to leg_itinerary_item_path(@itinerary_item.leg, @itinerary_item)
