@@ -6,8 +6,9 @@ vacations/show.html.erb
 <% if @vacation.start_date? %>
     <%= @vacation.start_date %>
     <%= @vacation.end_date %>
-    <% @vacation.legs.each do |leg| %>
-        <h2><%= link_to "#{leg.departure_city_name} - #{leg.arrival_city_name}", leg_path(leg) %></h2>
+    <% @sorted_legs.each do |leg| %>
+        <h2><%= link_to "#{Place.find_by(:id=>leg.departure_place_id).city_name} -
+            #{Place.find_by(:id => leg.arrival_place_id).city_name}", leg_path(leg) %></h2>
     <% end %>
 <% end %>
 </p>
