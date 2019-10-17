@@ -14,8 +14,10 @@ class VacationsController < ApplicationController
        if @vacation.nil?
             flash[:notice] = "You don't have access to view that."
             redirect_to "/"
+       else
+            @sorted_legs = Leg.sort(@vacation.id)
        end
-       @sorted_legs = Leg.sort(@vacation.id)
+
     end
 
     def edit

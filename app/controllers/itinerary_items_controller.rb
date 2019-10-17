@@ -37,9 +37,11 @@ class ItineraryItemsController < ApplicationController
             @leg = Leg.find_by(:id => params[:leg_id])
             if !Vacation.permit_view(current_user, @leg)).present?
                 redirect_to vacations_path, alert: "You don't have permission to do that."
+            else
+                @itinerary_item = ItineraryItem.find_by(:id => params[:id])
+                @attractions = Attraction.locations_in_place(@itinerary_item.leg)
+            end
         end
-        @itinerary_item = ItineraryItem.find_by(:id => params[:id])
-        @attractions = Attraction.locations_in_place(@itinerary_item.leg)
     end
 
     def create
