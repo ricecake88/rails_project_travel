@@ -1,7 +1,9 @@
 legs/:id/itinerary_items/
 <%= render 'users/nav'%>
 
+<h3>Back to: <%= link_to @leg.vacation.name, vacation_path(@leg.vacation) %></h3>
 <% @itinerary_items.each do |item| %>
     Day: <%= item.day_of_trip %><br/>
+    <%= item.type_of_activity %><br/>
     Time: <%= item.time %><br/>
 <% end %>
