@@ -2,9 +2,9 @@
 
 <% @places.each do |place| %>
     <p>
-    <p><%= place.city_name %></p>
+    <h2><%= place.city_name %></h2>
     <% place.vacations.each do |vacation|%>
-        <%=  vacation.name %>
+        <span class="vacation"><%= link_to vacation.name, vacation_path(vacation) %></span>
     <% end %>
     </p>
 <% end %>
