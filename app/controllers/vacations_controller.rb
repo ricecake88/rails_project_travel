@@ -22,6 +22,10 @@ class VacationsController < ApplicationController
 
     def edit
         @vacation = current_user.vacations.find_by(:id => params[:id])
+        if @vacation.nil?
+            flash[:notice] = "You don't have access to view that."
+            redirect_to "/"
+        end
     end
 
     def create
