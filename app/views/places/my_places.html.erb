@@ -4,7 +4,9 @@
     <p>
     <h2><%= place.city_name %></h2>
     <% place.vacations.each do |vacation|%>
-        <span class="vacation"><%= link_to vacation.name, vacation_path(vacation) %></span>
+        <% if vacation.user == current_user %>
+            <span class="vacation"><%= link_to vacation.name, vacation_path(vacation) %></span>
+        <% end %>
     <% end %>
     </p>
 <% end %>
