@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_053428) do
+ActiveRecord::Schema.define(version: 2019_10_17_034507) do
 
   create_table "attractions", force: :cascade do |t|
     t.integer "place_id"
@@ -38,21 +38,12 @@ ActiveRecord::Schema.define(version: 2019_09_10_053428) do
   end
 
   create_table "legs", force: :cascade do |t|
-    t.string "arrival_country_name"
-    t.string "arrival_country_code"
-    t.string "arrival_state_name"
-    t.string "arrival_state_code"
-    t.string "arrival_city_name"
     t.integer "vacation_id"
-    t.string "departure_country_name"
-    t.string "departure_country_code"
-    t.string "departure_state_name"
-    t.string "departure_state_code"
-    t.string "departure_city_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "arrival_place_id"
     t.integer "departure_place_id"
+    t.integer "leg_num"
   end
 
   create_table "places", force: :cascade do |t|
