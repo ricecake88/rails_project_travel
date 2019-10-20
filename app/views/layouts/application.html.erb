@@ -12,7 +12,7 @@
   <body>
     <!-- instructions to add flash notice and alert below from Devise -->
     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p class="alert"><%= alert.html_safe if alert.present? %></p>
   
     <%= yield %>
   </body>

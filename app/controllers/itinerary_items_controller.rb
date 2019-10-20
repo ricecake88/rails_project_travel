@@ -87,7 +87,8 @@ class ItineraryItemsController < ApplicationController
     end
 
     def flash_error_message(arg)
-        "The form contains #{ActionController::Base.helpers.pluralize(arg.errors.count, 'error')}:<br> #{arg.errors.full_messages.join('<br> ')}"    end
+        "The form contains #{ActionController::Base.helpers.pluralize(arg.errors.count, 'error')}:<br> #{arg.errors.full_messages.join('<br> ')}"
+    end
 
     def authorized_leg_and_vacation(leg_id)
         if leg_id
