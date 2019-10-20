@@ -3,10 +3,6 @@ legs/:id/itinerary_items/new
 
 <%= form_for @itinerary_item do |f| %>
 
-<% if @itinerary_item.errors.any? %>
-  <%= @itinerary_item.errors.full_messages %>
-<% end %>
-
     <%= f.hidden_field :leg_id , value: @itinerary_item.leg_id%><br/>
 
     <%= f.label :day_of_trip, "Day of Trip" %><br/>
