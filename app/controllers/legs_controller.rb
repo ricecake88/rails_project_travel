@@ -40,12 +40,13 @@ class LegsController < ApplicationController
 
     def create
         @leg = Leg.new(leg_params)
-        if @leg.save!
+        if @leg.save
             Vacation.update_vacation_places(@leg, "create")
             redirect_to leg_path(@leg)
         else
+            binding.pry
             flash[:notice] = "Failed creating new leg."
-            render new
+            render :new
         end
     end
 

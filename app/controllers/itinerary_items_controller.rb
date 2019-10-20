@@ -1,5 +1,6 @@
 class ItineraryItemsController < ApplicationController
     include Devise::Controllers::Helpers
+    include ApplicationHelper
 
     def index
         @leg = authorized_leg_and_vacation(params[:leg_id])
@@ -46,7 +47,7 @@ class ItineraryItemsController < ApplicationController
             if @itinerary_item.save
                 redirect_to leg_itinerary_item_path(@itinerary_item.leg, @itinerary_item)
             else
-                flash[:alert] = flash_error_message(@itinerary_item)
+                flash[:alert] = helpers.flash_error_message(@itinerary_item)
                 redirect_to new_leg_itinerary_item_path(@itinerary_item.leg)
             end
         else
@@ -61,7 +62,7 @@ class ItineraryItemsController < ApplicationController
             if @itinerary_item.update(itinerary_item_params)
                 redirect_to leg_itinerary_item_path(@itinerary_item.leg, @itinerary_item)
             else
-                flash[:alert] = "Could Not Edit Item<br/>" + flash_error_message(@itinerary_item)
+                flash[:alert] = "Could Not Edit Item<br/>" + helpers.flash_error_message(@itinerary_item)
                 redirect_to edit_leg_itinerary_item_path(@leg)
             end
         else
@@ -86,9 +87,7 @@ class ItineraryItemsController < ApplicationController
         params.require(:itinerary_item).permit(:leg_id, :time, :day_of_trip, :type_of_activity, :attraction_id)
     end
 
-    def flash_error_message(arg)
-        "The form contains #{ActionController::Base.helpers.pluralize(arg.errors.count, 'error')}:<br> #{arg.errors.full_messages.join('<br> ')}"
-    end
+
 
     def authorized_leg_and_vacation(leg_id)
         if leg_id
