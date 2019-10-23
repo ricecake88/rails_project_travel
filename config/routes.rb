@@ -9,11 +9,9 @@ Rails.application.routes.draw do
 
   resources :vacations
 
-  resources :legs, only: [:index, :show, :create, :edit, :destroy] do
+  resources :legs  do
     resources :itinerary_items, only: [:show, :index, :new, :create, :edit]
   end
-
-  get '/legs/new/:id', to: 'legs#new', :as => 'new_leg'
 
   resources :itinerary_items
 
