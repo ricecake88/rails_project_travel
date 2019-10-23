@@ -42,9 +42,10 @@ class LegsController < ApplicationController
             Vacation.update_vacation_places(@leg, "create")
             redirect_to leg_path(@leg)
         else
-            flash[:alert] = "Failed creating new leg<br/>" + helpers.flash_error_message(@leg)
+            flash[:notice] = "Failed creating new leg"
+            flash[:alert] = helpers.flash_error_message(@leg)
             @places = Place.all
-            render :new
+            redirect_to '/'
         end
     end
 
