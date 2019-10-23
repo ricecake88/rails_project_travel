@@ -45,8 +45,15 @@ class VacationsController < ApplicationController
         if !@vacation.present?
             flash[:notice] = "You don't have permissions to do that."
             redirect_to "/"
-        elsif @vacation.update(vacation_params)
-            redirect_to vacation_path(@vacation)
+        else
+            if @vacation.update(vacation_params)
+                flash[:notice] = "Edit vacation successful."
+                redirect_to vacation_path(@vacation)
+            else
+                flash[:notice] = "Editing vacation failed."
+                flash[:alert] = helpers.flash_error_message(@vacation)
+                redirect_to vacation_path(@vacation)
+            end
         end
     end
 
