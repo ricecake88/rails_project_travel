@@ -1,10 +1,8 @@
 class LegsController < ApplicationController
-    include ApplicationHelper
 
     def index
         if (params[:vacation_id])
            @legs = current_user.vacations.find_by(:id => params[:vacation_id]).legs
-           binding.pry
            @legs = Vacation.find_by(:id => params[:vacation_id]).legs
         else
             flash[:notice] = "Cannot show this page"
@@ -54,9 +52,13 @@ class LegsController < ApplicationController
         @leg = Leg.find_by(:id => params[:id])
         if @leg.present? || Vacation.permit_view(current_user, @leg).present?
             Vacation.update_vacation_places(@leg, "delete")
-            if @leg.update!(leg_params)
+            if @leg.update(leg_params)
                 Vacation.update_vacation_places(@leg, "create")
                 redirect_to leg_path(@leg)
+            else
+                flash[:notice] = "Failed updating leg."
+                flash[:alert] = helpers.flash_error_message(@leg)
+                redirect_to '/'
             end
         else
              render :edit
