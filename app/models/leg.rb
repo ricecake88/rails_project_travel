@@ -3,6 +3,7 @@ class Leg < ApplicationRecord
     has_many :itinerary_items
     validates :departure_place_id, presence: true
     validates :arrival_place_id, presence: true
+    validates :leg_num, uniqueness: { scope: :vacation, message: "has been set already"}
     validate :arrival_departure_cannot_be_same
 
     def self.sort(vacation_id)
@@ -14,4 +15,5 @@ class Leg < ApplicationRecord
             errors.add(:departure_place_id, "cannot be the same as arrival location")
         end
     end
+
 end
