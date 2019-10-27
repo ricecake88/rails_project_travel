@@ -18,6 +18,7 @@ class PlacesController < ApplicationController
             redirect_to place_path(@place)
         else
             flash[:notice] = "Place Failed."
+            flash[:alert] = helpers.flash_error_message(@place)
             redirect_to places_path
         end
     end
