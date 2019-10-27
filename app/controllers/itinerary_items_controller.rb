@@ -1,6 +1,4 @@
 class ItineraryItemsController < ApplicationController
-    include Devise::Controllers::Helpers
-    include ApplicationHelper
 
     def index
         @leg = authorized_leg_and_vacation(params[:leg_id])
