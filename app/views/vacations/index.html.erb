@@ -3,8 +3,6 @@ Location: vacations/index.html.erb
 
 <h1>Hello, <%= current_user.first_name %></h1>
 
-<%= render 'users/nav'%>
-
 <p>
 <% @vacations.each do |vacation| %>
     <h2><%= link_to vacation.name, vacation_path(vacation) %></h2>

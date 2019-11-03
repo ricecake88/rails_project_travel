@@ -1,5 +1,5 @@
   <% if user_signed_in? %>
-    <p>User Navigation</p>
+    <div class="nav">
     <ul>
     <li><%= link_to('Home', vacations_path) %></li>
     <li><%= link_to('New Vacation', new_vacation_path) %></li>
@@ -7,10 +7,5 @@
     <li><%= link_to('All Places', places_path) %></li>
     <li><%= link_to('My Places', user_places_path) %></li>
     </ul>
-  <% else %>
-    <ul>
-    <li>
-    <%= link_to('Login', new_user_session_path) %>
-    </li>
-    </ul>
+    </div>
   <% end %>
