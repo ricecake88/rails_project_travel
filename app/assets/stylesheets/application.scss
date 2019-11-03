@@ -13,5 +13,146 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
+ body {
+    margin: 0 auto;
+}
+
+ .wrapper { 
+    width: 100%; 
+    margin: 0 auto;
+}
+@media only screen and (max-width:980px) {
+    .wrapper {width: 90%; background-color: black;}
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90% 10%;
+    grid-gap: 0px;
+    margin: 0 auto;
+}
+
+
+.header {
+    background-color: #86a3a9;
+    background-image: asset-data-url('background.jpg');
+    height:250px;
+}
+
+.logo {
+    margin-left: 50px;
+    display: block;
+}
+
+.logo .wave {
+    font-family: Allura, Cursive;
+    color: black;
+    font-weight: 00;
+    display: inline-block;
+}
+.logo > span:nth-child(1) {
+    font-size: 70pt;
+    top: -100pt;
+        -webkit-transform: rotate(-40deg);
+           -moz-transform: rotate(-40deg);
+            -ms-transform: rotate(-40deg);
+             -o-transform: rotate(-40deg);
+                transform: translate(20px, 10px) rotate(10deg);
+}
+
+.logo > span:nth-child(2) {
+    font-size: 70pt;    
+        -webkit-transform: rotate(-20deg);
+           -moz-transform: rotate(-20deg);
+            -ms-transform: rotate(-20deg);
+             -o-transform: rotate(-20deg);
+                transform: translate(25px, 20px) rotate(0deg);
+}
+
+.logo > span:nth-child(3) {
+    font-size: 74pt;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+     -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+         transform: translate(30px, 20px) rotate(0deg);
+}
+
+.logo > span:nth-child(4) {
+    font-size: 76pt;    
+    -webkit-transform: rotate(-20deg);
+    -moz-transform: rotate(-20deg);
+     -ms-transform: rotate(-20deg);
+      -o-transform: rotate(-20deg);
+         transform: translate(45px, 12px) rotate(10deg);
+}
+
+.logo > span:nth-child(5) {
+    font-size: 80pt;    
+    -webkit-transform: rotate(-20deg);
+    -moz-transform: rotate(-20deg);
+     -ms-transform: rotate(-20deg);
+      -o-transform: rotate(-20deg);
+         transform: translate(65px) rotate(10deg);
+}
+.logo > span:nth-child(6) {
+    font-size: 86pt;  
+    -webkit-transform: rotate(-20deg);
+    -moz-transform: rotate(-20deg);
+     -ms-transform: rotate(-20deg);
+      -o-transform: rotate(-20deg);
+         transform: translate(70px, -5px)  rotate(-10deg);
+}
+#arrow {
+    font-family: Courier, Sans-Serif;
+    size: 20pt;
+}
+#tag {
+   font-family: 'Oxygen Mono', monospace;
+   font-size:24pt;
+   font-weight: bold;
+   margin-top:-40px;
+   margin-left:50px;
+   color: #78656b;
+}
+
+#tag2 {
+   font-family: 'Oxygen Mono', monospace;
+   font-size:24pt;
+   font-weight: bold;    
+   margin-top:-49px;
+   margin-left:180px;
+   color: #78656b;
+}
+
+.main {
+    padding: 20px;
+}
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.nav li {
+    display: inline;
+}
+.nav li a {
+    width: 120px;
+    background-color: #363fff;
+  }
+
+.main h1 {
+    font-family: Garamond, Serif;
+    text-transform: uppercase;
+}
+.main h2 {
+    font-size: 20pt;
+
+}
+.main .alert {
+    color: red;
+  }
+.main .field_with_errors {
+    color: red;
+  }
