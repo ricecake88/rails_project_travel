@@ -8,4 +8,6 @@
     <li><%= link_to('My Places', user_places_path) %></li>
     </ul>
     </div>
+  <% else %>
+    <%= link_to('Login', new_user_session_path) %>
   <% end %>
