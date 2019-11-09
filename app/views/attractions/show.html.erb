@@ -1,8 +1,10 @@
-attractions/show
+<!-- attractions/show -->
 
 <h1><%= @attraction.name %></h1>
 
 <p>
 Admission: <%= @attraction.admission == 0 ? "Free" : "$#{@attraction.admission}" %>
 </p>
-<%= link_to "Edit", edit_place_attraction_path(@place, @attraction) %> <%= link_to "Delete", attraction_path(@attraction), method: :delete %>
+<%= link_to "< Back to #{@place.city_name}", place_path(@place) %> | 
+<%= link_to "Edit", edit_place_attraction_path(@place, @attraction) %> | 
+<%= link_to "Delete", attraction_path(@attraction), method: :delete %>
