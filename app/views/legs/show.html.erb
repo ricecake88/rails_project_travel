@@ -1,4 +1,4 @@
-legs/show
+<!--legs/show-->
 
 <h1>
 <%= @departure_place_name %> - <%= @arrival_place_name %> Leg</h1>
@@ -10,11 +10,11 @@ Back to <%= link_to @leg.vacation.name, vacation_path(@leg.vacation) %> |
 </div>
 
 
-<h3>Leg Itinerary</h3>
+<h3>Itinerary</h3>
 
 <% @itinerary_items.each do |item| %>
     <p>
-    Day <%= item.day_of_trip %><br/>
+    <b>Day <%= item.day_of_trip %></b><br/>
     Activity Time: <%= item.time %><br/>
     Type of Activity: <%= item.type_of_activity %><br/>
     <% if item.type_of_activity == "Event" %>
