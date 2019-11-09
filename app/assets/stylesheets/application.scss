@@ -13,17 +13,20 @@
  *= require_tree .
  *= require_self
  */
- body {
+@media only screen and (max-width:980px) {
+    .wrapper {width: 90%; background-color: black;}
+}
+
+body {
     margin: 0 auto;
     background-color: whitesmoke;
 }
 
+
+
  .wrapper {
     width: 100%;
     margin: 0 auto;
-}
-@media only screen and (max-width:980px) {
-    .wrapper {width: 90%; background-color: black;}
 }
 
 .container {
@@ -201,18 +204,41 @@
     //border-left:1px solid silver;
 }
 
+.nav ul.user-nav li a:hover {
+    display: block;
+    width: 150px;
+    //padding: 7px 9px 7px;
+    text-decoration: none;
+    //text-align: center;
+    color: rgb(48, 44, 44);
+    //font-family: Arial, Sans-Serif;
+    //font-size:12pt;
+    //text-transform: uppercase;
+    //font-weight: 600;
+    //border-left:1px solid silver;
+}
+
+
 .main h1 {
-    font-family: Garamond, Serif;
-    text-transform: uppercase;
+    font-family: Arial, Sans-Serif;
+    font-size: 22pt;
 }
 .main h2 {
     font-size: 20pt;
     font-family: Arial, Sans-Serif;
+    color:rgb(37, 92, 100);
 
 }
 .main .alert {
     color: red;
-  }
+}
 .main .field_with_errors {
     color: red;
-  }
+}
+.main a {
+    color: grey;
+}
+.main .mini-nav {
+    font-size: 10pt;
+    color: green;
+}
