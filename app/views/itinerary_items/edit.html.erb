@@ -11,11 +11,16 @@ itinerary_items/edit
     <%= f.datetime_select :time %><br/>
 
     <%= f.label :type_of_activity, "Type of Activity" %><br/>
-    <%= f.select :type_of_activity, ['Flight', 'Event']%><br/>
+    <%= f.select :type_of_activity, ['Transport', 'Event','Food']%><br/>
 
     <%= f.label :attraction_id, "Attraction" %><br/>
-    <%= f.collection_select :attraction_id, @attractions, :id, :name%><br/>
-
+    <% if @attractions.present? %>
+        <%= f.collection_select :attraction_id, @attractions, :id, :name, :prompt => true%><br/>
+    <% else %>
+        No Attractions Available<br/>
+    <% end %>
 
     <%= f.submit "Submit"%><br/>
 <% end %>
+
+<%= link_to 'Cancel', leg_path(@itinerary_item.leg) %>
