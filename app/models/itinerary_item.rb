@@ -13,7 +13,7 @@ class ItineraryItem < ApplicationRecord
     end
 
     def no_attraction_when_activity_not_attraction
-        if attraction_id.present? && type_of_activity != "Attraction"
+        if attraction_id.present? && type_of_activity != "Event"
             errors.add(:attraction_id, "can't have an attraction when type of activity is not an attraction")
         end
     end
