@@ -1,5 +1,6 @@
 class LegsController < ApplicationController
-
+    before_action :authenticate_user!, raise: false
+    
     def index
         if (params[:vacation_id])
            @legs = current_user.vacations.find_by(:id => params[:vacation_id]).legs

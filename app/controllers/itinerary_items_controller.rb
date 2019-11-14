@@ -1,5 +1,6 @@
 class ItineraryItemsController < ApplicationController
-
+    before_action :authenticate_user!, raise: false
+    
     def index
         @leg = authorized_leg_and_vacation(params[:leg_id])
         if @leg.present?

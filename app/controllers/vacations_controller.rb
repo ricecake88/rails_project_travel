@@ -1,6 +1,7 @@
 class VacationsController < ApplicationController
     include Devise::Controllers::Helpers
-
+    before_action :authenticate_user!, raise: false
+    
     def index
         @vacations = current_user.vacations
     end
