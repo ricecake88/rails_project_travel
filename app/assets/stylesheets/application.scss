@@ -132,7 +132,7 @@ body {
 
 .main {
     padding: 20px;
-    font-family: Roboto, Sans-Serif;    
+    font-family: Roboto, Sans-Serif; 
 }
 .nav {
     //border-top: 1px solid grey;
@@ -238,7 +238,17 @@ body {
 .main a {
     color: grey;
 }
-.main .mini-nav {
+
+.content {
+    height:90%;
+}
+.content label {
+    line-height: 1.8;
+}
+.mini-nav {
+    margin-top:10px;
+}
+.mini-nav a {
     font-size: 10pt;
     color: green;
 }
