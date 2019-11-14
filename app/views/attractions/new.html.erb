@@ -1,5 +1,8 @@
-attractions/new
+<!-- attractions/new -->
 
+<h2>Add A New Attraction</h2>
+
+<div class="content">
 <%= form_for @attraction do |f| %>
     <%= f.hidden_field :place_id, value: @attraction.place_id %>
     <%= f.label :name, "Name" %><br/>
@@ -8,3 +11,8 @@ attractions/new
     <%= f.number_field :admission %><br/>
     <%= f.submit "Submit Attraction" %>
 <% end %>
+</div>
+
+<div class="mini-nav">
+    <%= link_to "Cancel", place_path(@attraction.place) %>
+</div>

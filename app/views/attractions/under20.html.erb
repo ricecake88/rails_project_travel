@@ -1,7 +1,15 @@
 
+<h1><%= @place.city_name %></h1>
+
+<div class="content">
 <% @attractions.each do |a| %>
     <p>
     <%= a.name %><br>
-    <%= a.admission %><br/>
+    <%= "$#{a.admission}" %><br/>
     </p>
 <% end %>
+</div>
+
+<div class="mini-nav">
+    <%= link_to "< Back to #{@place.city_name}", place_path(@place) %>
+</div>

@@ -1,5 +1,8 @@
-places/edit
+<!-- places/edit -->
 
+<h2>Edit Place</h2>
+
+<div class="content">
 <%= form_for @place do |f| %>
     <%= f.label :city_name, "City Name" %><br/>
     <%= f.text_field :city_name %><br/>
@@ -7,3 +10,8 @@ places/edit
     <%= f.text_field :country_name %><br/>
     <%= f.submit "Edit Place" %>
 <% end %>
+</div>
+
+<div class="mini-nav">
+    <%= link_to "Cancel", place_path(@place) %>
+</div>

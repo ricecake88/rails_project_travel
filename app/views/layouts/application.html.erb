@@ -26,15 +26,16 @@
             <span class="wave l">l</span>
             <p id="tag">S T A R T  &nbsp;T O  <span id="arrow">>></span></p>
             <p id="tag2"> F I N I S H</p>
-          </div>
-        </div>
+          </div><!-- end logo class -->
+        </div><!-- end header class -->
         <%= render 'users/nav'%>
         <div class="main">
           <!-- instructions to add flash notice and alert below from Devise -->
           <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert.html_safe if alert.present? %></p>
           <%= yield %>
-        </div>
-      </div>
+        </div><!-- end main class -->
+      </div><!--end container class -->
+    </div><!-- end wrapper class -->
   </body>
 </html>

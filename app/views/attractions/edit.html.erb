@@ -1,9 +1,18 @@
-attractions/edit
+<!-- attractions/edit -->
+
+<h2>Edit Attraction</h2>
+
+<div class="content">
 <%= form_for @attraction do |f| %>
     <%= f.hidden_field :place_id, value: @place.id %>
-    <%= f.label :name, "Name" %><br/>
+    <%= f.label :name, "Name" %> 
     <%= f.text_field :name %><br/>
-    <%= f.label :admission, "Admission" %><br/>
+    <%= f.label :admission, "Admission" %> 
     <%= f.number_field :admission %><br/>
     <%= f.submit "Edit Attraction" %>
 <% end %>
+</div>
+
+<div class="mini-nav">
+    <%= link_to "Cancel", place_attraction_path(@place, @attraction) %>
+</div>

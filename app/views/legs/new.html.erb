@@ -1,16 +1,22 @@
-legs/new.html
+<!-- legs/new.html -->
+
+<h2>Add a Leg</h2>
 
 <%= form_for @leg do |f| %>
-    <%= f.label :departure_place_id, "Departure City:" %> <br/>
+    <%= f.label :departure_place_id, "Departure City:" %> 
     <%= f.collection_select :departure_place_id, @places, :id, :city_name %><br/>
 
-    <%= f.label :arrival_place_id, "Arrival City:" %> <br/>
+    <%= f.label :arrival_place_id, "Arrival City:" %> 
     <%= f.collection_select :arrival_place_id, @places, :id, :city_name %><br/>
 
-    <%= f.label :leg_num, "Which Leg:" %><br/>
+    <%= f.label :leg_num, "Which Leg:" %> 
     <%= f.number_field :leg_num, min: 1, value: 1 %><br/>
 
-    <%= f.label :vacation_id, "Vacation:" %><br/>
+    <%= f.label :vacation_id, "Vacation:" %> 
     <%= f.collection_select :vacation_id, current_user.vacations, :id, :name%><br/>
     <%= f.submit "Submit Leg" %>
 <% end %>
+
+<div class="mini-nav">
+    <%= link_to "Cancel", vacations_path %>
+</div>

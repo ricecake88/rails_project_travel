@@ -1,4 +1,6 @@
-legs/:id/itinerary_items/new
+<!-- legs/:id/itinerary_items/new -->
+
+<h2>Add Itinerary Item</h2>
 
 <%= form_for @itinerary_item do |f| %>
 
@@ -23,3 +25,6 @@ legs/:id/itinerary_items/new
     <%= f.submit "Submit"%><br/>
 <% end %>
 
+<div class="mini-nav">
+    <%= link_to "Cancel", leg_path(@itinerary_item.leg) %>
+</div>

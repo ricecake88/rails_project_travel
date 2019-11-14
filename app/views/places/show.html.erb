@@ -4,16 +4,18 @@
 <%= link_to "Edit Place", edit_place_path(@place) %>
 <%= link_to "Delete Place", place_path(@place), method: :delete %>
 
+<div class="content">
 <% @place.attractions.each do |a| %>
     <p>
     <%= link_to a.name, place_attraction_path(@place, a) %><br/>
-    <%= "$#{a.admission}" if a.admission.present? %>
+    <%= a.admission == 0 ? "Free" : "$#{a.admission}" %>
     </p>
 <% end %>
+</div>
 
 <div class="mini-nav">
 <%= link_to "< Back to All Destinations", places_path, :class => "mini-nav" %> |
-<%= link_to "View all Attractions", place_attractions_path(@place), :class => "mini-nav" %> |
+<!-- <%= link_to "View all Attractions", place_attractions_path(@place), :class => "mini-nav" %> |-->
 <%= link_to "Attractions < $20", under20_path(@place), :class => "mini-nav" %> | 
 <%= link_to "Add a new Attraction", new_place_attraction_path(@place), :class => "mini-nav" %>
 </div>

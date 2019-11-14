@@ -1,11 +1,12 @@
-vacations/show.html.erb
+<!--vacations/show.html.erb -->
 
-<h1><%= @vacation.name %></h1>
+<h2><%= @vacation.name %></h2>
 <p>
 <% if @vacation.start_date? %>
     <%= @vacation.start_date %>
     <%= @vacation.end_date %>
     <% @sorted_legs.each do |leg| %>
+        <% binding.pry %>
         <h2><%= link_to "#{Place.find_by(:id=>leg.departure_place_id).city_name} -
             #{Place.find_by(:id => leg.arrival_place_id).city_name}", leg_path(leg) %></h2>
     <% end %>

@@ -1,7 +1,7 @@
-<!-- edit a vacation -->
-vacations/edit.html.erb
+<!-- vacations/edit.html.erb -->
 
-<%= render 'errors' %>
+<h2>Edit a Vacation</h2>
+
 <%= form_for(@vacation) do |f| %>
     <%= f.label :name, "Name:" %><br/>
     <%= f.text_field :name %><br/>
@@ -13,3 +13,7 @@ vacations/edit.html.erb
 
     <%= f.submit "Edit Vacation Details"%>
 <% end %>
+
+<div class="mini-nav">
+    <%= link_to "Cancel", vacations_path %>
+</div>

@@ -1,6 +1,8 @@
-itinerary_items/edit
+<!--itinerary_items/edit-->
 
+<h2>Edit Itinerary Item</h2>
 
+<div class="content">
 <%= form_for @itinerary_item do |f| %>
     <%= f.hidden_field :leg_id , value: @itinerary_item.leg_id%><br/>
 
@@ -22,5 +24,8 @@ itinerary_items/edit
 
     <%= f.submit "Submit"%><br/>
 <% end %>
+</div>
 
+<div class="mini-nav">
 <%= link_to 'Cancel', leg_path(@itinerary_item.leg) %>
+</div>

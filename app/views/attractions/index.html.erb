@@ -1,7 +1,19 @@
-attractions/index
+<!--attractions/index-->
 
-<p><%= @place.city_name %></p>
+<h1><%= link_to @place.city_name, place_path(@place) %></h1>
 
+<h2>Attractions</h2>
+
+<div class="content">
 <% @attractions.each do |attraction| %>
     <%= link_to attraction.name, place_attraction_path(@place, attraction) %><br/>
 <% end %>
+</div>
+
+
+<div class="mini-nav">
+<%= link_to "< Back to All Destinations", places_path, :class => "mini-nav" %> |
+<!--<%= link_to "View all Attractions", place_attractions_path(@place), :class => "mini-nav" %> |-->
+<%= link_to "Attractions < $20", under20_path(@place), :class => "mini-nav" %> | 
+<%= link_to "Add a new Attraction", new_place_attraction_path(@place), :class => "mini-nav" %>
+</div>

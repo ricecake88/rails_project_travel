@@ -1,4 +1,6 @@
-legs/edit
+<!--legs/edit-->
+
+<h2>Edit Leg</h2>
 
 <%= form_for @leg do |f| %>
     <%= f.label :departure_city_id, "Departure City: "%><br/>
@@ -11,3 +13,7 @@ legs/edit
     <%= f.collection_select :vacation_id, current_user.vacations, :id, :name, {:selected => @leg.vacation_id} %><br/>
     <%= f.submit "Submit Leg" %>
 <% end %>
+
+<div class="mini-nav">
+    <%= link_to "Cancel", leg_path(@leg) %>
+</div>

@@ -1,10 +1,10 @@
   <% if user_signed_in? %>
     <div class="nav">
-    <ul class="user-nav">
-    <%= nav_link('Home', vacations_path) %>
-    <%= nav_link('New Vacation', new_vacation_path) %>
-    <%= nav_link('My Places', user_places_path) %>
-   </ul>
+      <ul class="user-nav">
+        <%= nav_link('Home', vacations_path) %>
+        <%= nav_link('New Vacation', new_vacation_path) %>
+        <%= nav_link('My Places', user_places_path) %>
+      </ul>
     </div>
   <% else %>
   <% end %>
