@@ -5,7 +5,7 @@ class LegsController < ApplicationController
            @legs = current_user.vacations.find_by(:id => params[:vacation_id]).legs
            @legs = Vacation.find_by(:id => params[:vacation_id]).legs
         else
-            flash[:notice] = "Cannot show this page"
+            flash[:notice] = "Cannot show this page."
             redirect_to '/'
         end
     end
@@ -20,10 +20,11 @@ class LegsController < ApplicationController
         if !(Vacation.permit_view(current_user, @leg)).present?
             flash[:notice] = "You don't have permission to do that."
             redirect_to '/'
+        else
+            @itinerary_items = ItineraryItem.sort(@leg.id)
+            @arrival_place_name = Place.find_by(:id => @leg.arrival_place_id).city_name
+            @departure_place_name = Place.find_by(:id => @leg.departure_place_id).city_name
         end
-        @itinerary_items = ItineraryItem.sort(@leg.id)
-        @arrival_place_name = Place.find_by(:id => @leg.arrival_place_id).city_name
-        @departure_place_name = Place.find_by(:id => @leg.departure_place_id).city_name
     end
 
     def edit
@@ -42,7 +43,7 @@ class LegsController < ApplicationController
             Vacation.update_vacation_places(@leg, "create")
             redirect_to leg_path(@leg)
         else
-            flash[:notice] = "Failed creating new leg"
+            flash[:notice] = "Failed creating new leg."
             flash[:alert] = helpers.flash_error_message(@leg)
             @places = Place.all
             redirect_to '/'

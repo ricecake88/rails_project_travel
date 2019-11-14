@@ -71,6 +71,11 @@ class AttractionsController < ApplicationController
     def under20
         if params[:place_id]
             @attractions = Attraction.under_20(params[:place_id])
+            @place = Place.find_by(:id => params[:place_id])
+            if !@place.present?
+                flash[:alert] = "Place not found."
+                redirect_to '/'
+            end
         else
             @attractions = Attraction.all
             redirect_to attractions_path

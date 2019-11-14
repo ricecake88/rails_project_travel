@@ -85,8 +85,6 @@ class ItineraryItemsController < ApplicationController
         params.require(:itinerary_item).permit(:leg_id, :time, :day_of_trip, :type_of_activity, :attraction_id)
     end
 
-
-
     def authorized_leg_and_vacation(leg_id)
         if leg_id
             leg = Leg.find_by(:id => leg_id)
