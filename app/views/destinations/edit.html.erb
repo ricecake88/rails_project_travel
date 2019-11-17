@@ -1,0 +1,17 @@
+<!-- destinations/edit -->
+
+<h2>Edit Destination</h2>
+
+<div class="content">
+<%= form_for @destination do |f| %>
+    <%= f.label :city_name, "City Name" %><br/>
+    <%= f.text_field :city_name %><br/>
+    <%= f.label :country_name, "Country Name" %><br/>
+    <%= f.text_field :country_name %><br/>
+    <%= f.submit "Edit Place" %>
+<% end %>
+</div>
+
+<div class="mini-nav">
+    <%= link_to "Cancel", destination_path(@destination) %>
+</div>

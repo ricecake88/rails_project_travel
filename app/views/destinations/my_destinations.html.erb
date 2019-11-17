@@ -1,0 +1,11 @@
+
+<% @destinations.each do |destination| %>
+    <p>
+    <h2><%= destination.city_name %></h2>
+    <% destination.vacations.each do |vacation|%>
+        <% if vacation.user == current_user %>
+            <span class="vacation"><%= link_to vacation.name, vacation_path(vacation) %></span>
+        <% end %>
+    <% end %>
+    </p>
+<% end %>

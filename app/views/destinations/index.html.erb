@@ -1,0 +1,11 @@
+<!--destinations/index-->
+
+<h1>Start Planning Your Trip!</h1>
+
+<p>The Possibilities are Endless...</p>
+
+<% @destinations.each do |destination| %>
+    <p><%= link_to "#{destination.city_name}, #{destination.state_name} #{destination.country_name}", destination_path(destination) %></p>
+<% end %>
+
+<%= link_to("Add New Destination", new_destination_path) %><br/>

@@ -1,0 +1,20 @@
+<!--destinations/show-->
+
+<h1><%= @destination.city_name %></h1>
+<%= link_to "Edit Destination", edit_destination_path(@destination) %>
+<%= link_to "Delete Destination", destination_path(@destination), method: :delete %>
+
+<div class="content">
+<% @destination.attractions.each do |a| %>
+    <p>
+    <%= link_to a.name, destination_attraction_path(@destination, a) %><br/>
+    <%= a.admission == 0 ? "Free" : "$#{a.admission}" %>
+    </p>
+<% end %>
+</div>
+
+<div class="mini-nav">
+<%= link_to "< Back to All Destinations", destinations_path, :class => "mini-nav" %> |
+<%= link_to "Attractions < $20", under20_path(@destination), :class => "mini-nav" %> | 
+<%= link_to "Add a new Attraction", new_destination_attraction_path(@destination), :class => "mini-nav" %>
+</div>
