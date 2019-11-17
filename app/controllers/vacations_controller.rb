@@ -1,6 +1,6 @@
 class VacationsController < ApplicationController
     include Devise::Controllers::Helpers
-    before_action :authenticate_user!, raise: false
+    before_action :authenticate_user!, raise: false, except: [:edit]
     
     def index
         @vacations = current_user.vacations
@@ -13,7 +13,7 @@ class VacationsController < ApplicationController
     def show
         @vacation = current_user.vacations.find_by(:id => params[:id])
        if @vacation.nil?
-            flash[:notice] = "You don't have access to view that."
+            flash[:alert] = "You don't have access to view that."
             redirect_to "/"
        else
             @sorted_legs = Leg.sort(@vacation.id)
@@ -24,7 +24,7 @@ class VacationsController < ApplicationController
     def edit
         @vacation = current_user.vacations.find_by(:id => params[:id])
         if @vacation.nil?
-            flash[:notice] = "You don't have access to view that."
+            flash[:alert] = "You don't have access to view that."
             redirect_to "/"
         end
     end
@@ -35,7 +35,7 @@ class VacationsController < ApplicationController
         flash[:notice] = "Vacation Created."
         redirect_to vacation_path(@vacation)
        else
-        flash[:notice] = "Error in creating vacation."
+        flash[:alert] = "Error in creating vacation."
         flash[:alert] = helpers.flash_error_message(@vacation)
         render :new
        end
@@ -44,14 +44,14 @@ class VacationsController < ApplicationController
     def update
         @vacation = current_user.vacations.find_by(:id => params[:id])
         if !@vacation.present?
-            flash[:notice] = "You don't have permissions to do that."
+            flash[:alert] = "You don't have permissions to do that."
             redirect_to "/"
         else
             if @vacation.update(vacation_params)
                 flash[:notice] = "Edit vacation successful."
                 redirect_to vacation_path(@vacation)
             else
-                flash[:notice] = "Editing vacation failed."
+                flash[:alert] = "Editing vacation failed."
                 flash[:alert] = helpers.flash_error_message(@vacation)
                 redirect_to vacation_path(@vacation)
             end
@@ -64,7 +64,7 @@ class VacationsController < ApplicationController
             flash[:notice] = "Vacation Deleted."
             redirect_to vacations_path
         else
-            flash[:notice] = "You don't have permissions to do that."
+            flash[:alert] = "You don't have permissions to do that."
             redirect_to "/"
         end
     end

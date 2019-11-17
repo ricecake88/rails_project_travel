@@ -1,6 +1,6 @@
 class ItineraryItemsController < ApplicationController
     before_action :authenticate_user!, raise: false
-    
+
     def index
         @leg = authorized_leg_and_vacation(params[:leg_id])
         if @leg.present?
@@ -14,7 +14,7 @@ class ItineraryItemsController < ApplicationController
         @leg = authorized_leg_and_vacation(params[:leg_id])
         @itinerary_item = ItineraryItem.new(:leg_id => params[:leg_id])
         if @leg.present? && @itinerary_item.present?
-            @attractions = Attraction.locations_in_place(@itinerary_item.leg)
+            @attractions = Attraction.locations_in_destination(@itinerary_item.leg)
         else
             redirect_to vacations_path, alert: "You don't have permission to do that."
         end
@@ -33,7 +33,7 @@ class ItineraryItemsController < ApplicationController
         @leg = authorized_leg_and_vacation(params[:leg_id])
         @itinerary_item = ItineraryItem.find_by(:id => params[:id])
         if @leg.present? && @itinerary_item.present?
-            @attractions = Attraction.locations_in_place(@itinerary_item.leg)
+            @attractions = Attraction.locations_in_destination(@itinerary_item.leg)
         else
             redirect_to vacations_path, alert: "You don't have permission to do that."
         end
@@ -44,6 +44,7 @@ class ItineraryItemsController < ApplicationController
         @itinerary_item = ItineraryItem.new(itinerary_item_params)
         if @leg.present? && @itinerary_item.present?
             if @itinerary_item.save
+                flash[:notice] = "Item added."
                 redirect_to leg_itinerary_item_path(@itinerary_item.leg, @itinerary_item)
             else
                 flash[:alert] = helpers.flash_error_message(@itinerary_item)
@@ -59,6 +60,7 @@ class ItineraryItemsController < ApplicationController
         @itinerary_item = ItineraryItem.find_by(:id => params[:id])
         if @leg.present? && @itinerary_item.present?
             if @itinerary_item.update(itinerary_item_params)
+                flash[:notice] = "Item updated."
                 redirect_to leg_itinerary_item_path(@itinerary_item.leg, @itinerary_item)
             else
                 flash[:alert] = "Could Not Edit Item<br/>" + helpers.flash_error_message(@itinerary_item)

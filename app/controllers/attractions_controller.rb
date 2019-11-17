@@ -1,9 +1,9 @@
 class AttractionsController < ApplicationController
     def index
-        if params[:place_id] && Place.exists?(:id => params[:place_id])
+        if params[:destination_id] && Place.exists?(:id => params[:destination_id])
             # need to create scope method here to find Place and Attractions
-            @attractions = Attraction.where(:place_id => params[:place_id])
-            @place = Place.find_by(:id => params[:place_id])
+            @attractions = Attraction.where(:destination_id => params[:destination_id])
+            @destination = Destination.find_by(:id => params[:destination_id])
         else
             @attractions = Attraction.all
             redirect_to attractions_path
@@ -11,13 +11,13 @@ class AttractionsController < ApplicationController
     end
 
     def new
-        @attraction = Attraction.new(:place_id => params[:place_id])
+        @attraction = Attraction.new(:destination_id => params[:destination_id])
     end
 
     def show
-        if params[:place_id]
+        if params[:destination_id]
             @attraction = Attraction.find_by(:id => params[:id])
-            @place = @attraction.place
+            @destination = @attraction.destination
         else
             flash[:notice] = "Incorrect URL."
             redirect_to attraction
@@ -27,7 +27,7 @@ class AttractionsController < ApplicationController
     def edit
         if params[:place_id]
             @attraction = Attraction.find_by(:id => params[:id])
-            @place = @attraction.place
+            @destination = @attraction.place
         else
             flash[:notice] = "Invalid URL."
         end
@@ -38,10 +38,10 @@ class AttractionsController < ApplicationController
             @attraction = Attraction.new(attraction_params)
             if @attraction.save
                 flash[:notice] = "Attraction Created."
-                redirect_to place_attraction_path(@attraction.place, @attraction)
+                redirect_to destination_attraction_path(@attraction.destination, @attraction)
             else
                 flash[:notice] = "Adding Attraction Failed."
-                redirect_to place_path(@attraction.place)
+                redirect_to destination_path(@attraction.destination)
             end
         else
             flash[:notice] = "Invalid URL"
@@ -53,27 +53,27 @@ class AttractionsController < ApplicationController
         @attraction = Attraction.find_by(:id => params[:id])
         if @attraction.update(attraction_params)
             flash[:notice] = "Updated Attraction"
-            redirect_to place_attraction_path(@attraction.place, @attraction)
+            redirect_to destination_attraction_path(@attraction.destination, @attraction)
         else
             flash[:notice] = "Updating Attraction Failed"
-            redirect_to place_attractions_path(@attraction.place)
+            redirect_to destination_attractions_path(@attraction.destination)
         end
     end
 
     def destroy
         @attraction = Attraction.find_by(:id => params[:id])
-        @place = @attraction.place
+        @destination = @attraction.destination
         @attraction.destroy
         flash[:notice]= "Attraction Deleted."
-        redirect_to place_attractions_path(@place)
+        redirect_to destination_attractions_path(@destination)
     end
 
     def under20
-        if params[:place_id]
-            @attractions = Attraction.under_20(params[:place_id])
-            @place = Place.find_by(:id => params[:place_id])
-            if !@place.present?
-                flash[:alert] = "Place not found."
+        if params[:destination_id]
+            @attractions = Attraction.under_20(params[:destination_id])
+            @destination = Destination.find_by(:id => params[:destination_id])
+            if !@destination_id.present?
+                flash[:alert] = "Destination not found."
                 redirect_to '/'
             end
         else
@@ -85,6 +85,6 @@ class AttractionsController < ApplicationController
     private
 
     def attraction_params
-        params.require(:attraction).permit(:name, :place_id, :admission)
+        params.require(:attraction).permit(:name, :destination_id, :admission)
     end
 end
