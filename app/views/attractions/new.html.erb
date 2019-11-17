@@ -4,7 +4,7 @@
 
 <div class="content">
 <%= form_for @attraction do |f| %>
-    <%= f.hidden_field :place_id, value: @attraction.place_id %>
+    <%= f.hidden_field :destination_id, value: @attraction.destination_id %>
     <%= f.label :name, "Name" %><br/>
     <%= f.text_field :name %><br/>
     <%= f.label :admission, "Admission" %><br/>
@@ -14,5 +14,5 @@
 </div>
 
 <div class="mini-nav">
-    <%= link_to "Cancel", place_path(@attraction.place) %>
+    <%= link_to "Cancel", destination_path(@attraction.destination) %>
 </div>

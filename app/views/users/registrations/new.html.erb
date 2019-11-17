@@ -15,7 +15,7 @@
 
   <div class="field">
     <%= f.label :home %><br />
-    <%= f.collection_select :place_id, Place.all, :id, :city_name %>
+    <%= f.collection_select :home_id, Destination.all, :id, :city_name %>
   </div>
 
   <div class="field">

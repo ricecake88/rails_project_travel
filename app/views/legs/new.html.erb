@@ -3,11 +3,11 @@
 <h2>Add a Leg</h2>
 
 <%= form_for @leg do |f| %>
-    <%= f.label :departure_place_id, "Departure City:" %> 
-    <%= f.collection_select :departure_place_id, @places, :id, :city_name %><br/>
+    <%= f.label :departure_id, "Departure City:" %> 
+    <%= f.collection_select :departure_id, @destinations, :id, :city_name %><br/>
 
-    <%= f.label :arrival_place_id, "Arrival City:" %> 
-    <%= f.collection_select :arrival_place_id, @places, :id, :city_name %><br/>
+    <%= f.label :destination_id, "Arrival City:" %> 
+    <%= f.collection_select :destination_id, @destinations, :id, :city_name %><br/>
 
     <%= f.label :leg_num, "Which Leg:" %> 
     <%= f.number_field :leg_num, min: 1, value: 1 %><br/>

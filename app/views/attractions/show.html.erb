@@ -5,6 +5,6 @@
 <p>
 Admission: <%= @attraction.admission == 0 ? "Free" : "$#{@attraction.admission}" %>
 </p>
-<%= link_to "< Back to #{@place.city_name}", place_path(@place) %> | 
-<%= link_to "Edit", edit_place_attraction_path(@place, @attraction) %> | 
+<%= link_to "< Back to #{@destination.city_name}", destination_path(@destination) %> | 
+<%= link_to "Edit", edit_destination_attraction_path(@destination, @attraction) %> | 
 <%= link_to "Delete", attraction_path(@attraction), method: :delete %>
