@@ -8,16 +8,16 @@ Rails.application.routes.draw do
 
   resources :vacations
 
-  resources :legs  do
+  resources :legs do
     resources :itinerary_items, only: [:show, :index, :new, :create, :edit]
   end
 
   resources :itinerary_items
 
-  get 'places/:place_id/attractions/over20', to: 'attractions#under20', :as => :under20
-  get 'places/mine', to: 'places#my_places', :as => :user_places
+  get 'destinations/:place_id/attractions/over20', to: 'attractions#under20', :as => :under20
+  get 'destinations/mine', to: 'destinations#my_destinations', :as => :user_destinations
 
-  resources :places do
+  resources :destinations do
     resources :attractions, only: [:show, :index, :new, :create, :edit]
   end
 
@@ -30,9 +30,10 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
+
   authenticated :user do 
     root 'vacations#index', as: :authenticated_root
   end
 
-  root 'places#index'
+  root 'destinations#index'
 end
