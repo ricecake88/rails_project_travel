@@ -9,7 +9,7 @@ class ItineraryItem < ApplicationRecord
     end
 
     def self.sort(leg_id)
-        ItineraryItem.where(:leg_id => leg_id).order(:day_of_trip)
+        ItineraryItem.where(:leg_id => leg_id).order(:day_of_trip, :time)
     end
 
     def no_attraction_when_activity_not_attraction

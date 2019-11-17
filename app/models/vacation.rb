@@ -1,31 +1,26 @@
 class Vacation < ApplicationRecord
     belongs_to :user
     has_many :legs
-    has_many :vacation_places
-    has_many :places, through: :vacation_places
+    has_many :destinations, through: :legs
     validates_with DateValidator
     validates :name, presence: { message: "cannot be blank." }
 
     def self.permit_view(user, object)
-        if object.present?
+        if object.present? && user.present?
             @vacation = Vacation.where("user_id = ? and id = ?", user.id, object.vacation.id)
         else
             nil
         end
     end
 
-    def self.update_vacation_places(leg, action)
-        arrival_place = Place.find_by(:id => leg.arrival_place_id)
-        departure_place = Place.find_by(:id => leg.departure_place_id)
-        if arrival_place.present? && departure_place.present?
+    def self.update_vacation_destinations(leg, action)
+        destination_place = Destination.find_by(:id => leg.destination_id)
+        if destination_place.present?
             if action == "create"
-                leg.vacation.places << arrival_place
-                leg.vacation.places << departure_place
+                leg.vacation.destinations << destination_place
             else action == "delete"
-                @arrival_vacation_place = VacationPlace.find_by(:vacation_id => leg.vacation.id, :place_id => arrival_place.id)
-                @departure_vacation_place = VacationPlace.find_by(:vacation_id => leg.vacation.id, :place_id => departure_place.id)
-                VacationPlace.delete(@arrival_vacation_place)
-                VacationPlace.delete(@departure_vacation_place)
+                @leg_destination = Leg.find_by(:vacation_id => leg.vacation.id, :destination_id => destination_place.id)
+               Leg.delete(@leg_destination)
             end
         end
     end
