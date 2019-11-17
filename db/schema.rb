@@ -13,11 +13,21 @@
 ActiveRecord::Schema.define(version: 2019_10_17_034507) do
 
   create_table "attractions", force: :cascade do |t|
-    t.integer "place_id"
+    t.integer "destination_id"
     t.string "name"
     t.integer "admission"
     t.string "webpage"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "destinations", force: :cascade do |t|
+    t.string "country_name"
+    t.string "country_code"
+    t.string "state_name"
+    t.string "state_code"
+    t.string "city_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,27 +49,17 @@ ActiveRecord::Schema.define(version: 2019_10_17_034507) do
 
   create_table "legs", force: :cascade do |t|
     t.integer "vacation_id"
+    t.integer "destination_id"
+    t.integer "departure_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "arrival_place_id"
-    t.integer "departure_place_id"
     t.integer "leg_num"
-  end
-
-  create_table "places", force: :cascade do |t|
-    t.string "country_name"
-    t.string "country_code"
-    t.string "state_name"
-    t.string "state_code"
-    t.string "city_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.integer "place_id"
+    t.integer "home_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -71,14 +71,6 @@ ActiveRecord::Schema.define(version: 2019_10_17_034507) do
     t.string "google_refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "vacation_places", force: :cascade do |t|
-    t.integer "vacation_id"
-    t.integer "place_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "quantity"
   end
 
   create_table "vacations", force: :cascade do |t|
