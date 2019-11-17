@@ -1,6 +1,6 @@
-class CreatePlaces < ActiveRecord::Migration[5.2]
+class CreateDestinations < ActiveRecord::Migration[5.2]
   def change
-    create_table :places do |t|
+    create_table :destinations do |t|
       t.string :country_name
       t.string :country_code
       t.string :state_name
