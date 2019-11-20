@@ -1,4 +1,6 @@
 class DestinationsController < ApplicationController
+    before_action :authenticate_user!, raise: false, except: [:index, :show]
+
     def index
         @destinations = Destination.all
     end
