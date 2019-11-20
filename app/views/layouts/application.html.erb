@@ -32,7 +32,7 @@
         <div class="main">
           <!-- instructions to add flash notice and alert below from Devise -->
           <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert.html_safe if alert.present? %></p>
+          <p class="fields_with_errors"><%= alert.html_safe if alert.present? %></p>
           <%= yield %>
         </div><!-- end main class -->
       </div><!--end container class -->
