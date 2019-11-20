@@ -3,7 +3,7 @@ class AttractionsController < ApplicationController
 
     def index
         if params[:destination_id] && Destination.exists?(:id => params[:destination_id])
-            # need to create scope method here to find Place and Attractions
+            # need to create scope method here to find Destination and Attractions
             @attractions = Attraction.where(:destination_id => params[:destination_id])
             @destination = Destination.find_by(:id => params[:destination_id])
         else
@@ -27,7 +27,7 @@ class AttractionsController < ApplicationController
     end
 
     def edit
-        if params[:place_id]
+        if params[:destination_id]
             @attraction = Attraction.find_by(:id => params[:id])
             @destination = @attraction.destination
         else
@@ -37,7 +37,7 @@ class AttractionsController < ApplicationController
     end
 
     def create
-        if params[:attraction][:place_id]
+        if params[:attraction][:destination_id]
             @attraction = Attraction.new(attraction_params)
             if @attraction.save
                 flash[:notice] = "Attraction Created."
