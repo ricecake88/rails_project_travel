@@ -36,8 +36,8 @@ class VacationsController < ApplicationController
         redirect_to vacation_path(@vacation)
        else
         flash[:alert] = "Error in creating vacation."
-        flash[:alert] = helpers.flash_error_message(@vacation)
-        render :new
+        flash[:alert] += helpers.flash_error_message(@vacation)
+        redirect_to new_vacation_path
        end
     end
 
@@ -52,7 +52,7 @@ class VacationsController < ApplicationController
                 redirect_to vacation_path(@vacation)
             else
                 flash[:alert] = "Editing vacation failed."
-                flash[:alert] = helpers.flash_error_message(@vacation)
+                flash[:alert] += helpers.flash_error_message(@vacation)
                 redirect_to vacation_path(@vacation)
             end
         end
