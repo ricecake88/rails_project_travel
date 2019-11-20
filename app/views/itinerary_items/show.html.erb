@@ -11,4 +11,4 @@ Type of Activity: <%= @itinerary_item.type_of_activity %><br/>
 <% end %>
 </div>
 
-<%= link_to "View All Items", leg_itinerary_items_path %><br/>
+<%= link_to "View All Items", leg_path(@itinerary_item.leg) %><br/>
