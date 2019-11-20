@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
 
+  resources :users
+
   authenticated :user do 
     root 'vacations#index', as: :authenticated_root
   end
