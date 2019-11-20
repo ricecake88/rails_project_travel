@@ -5,7 +5,7 @@
 <%= form_for @leg do |f| %>
     <%= f.label :departure_id, "Departure City: "%><br/>
     <%= f.collection_select :departure_id, @destinations, :id, :city_name, {:selected => @leg.departure_id} %><br/>
-    <%= f.label :destination_id, "Arrival City:" %><br/>
+    <%= f.label :destination_id, "Destination:" %><br/>
     <%= f.collection_select :destination_id, @destinations, :id, :city_name, {:selected => @leg.destination_id} %><br/>
     <%= f.label :leg_num, "Which Leg:" %><br/>
     <%= f.number_field :leg_num, min: 1, :value => @leg.leg_num %><br/>

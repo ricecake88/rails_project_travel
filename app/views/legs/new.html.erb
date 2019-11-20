@@ -6,7 +6,7 @@
     <%= f.label :departure_id, "Departure City:" %> 
     <%= f.collection_select :departure_id, @destinations, :id, :city_name %><br/>
 
-    <%= f.label :destination_id, "Arrival City:" %> 
+    <%= f.label :destination_id, "Destination:" %> 
     <%= f.collection_select :destination_id, @destinations, :id, :city_name %><br/>
 
     <%= f.label :leg_num, "Which Leg:" %> 
