@@ -1,6 +1,8 @@
 class AttractionsController < ApplicationController
+    before_action :authenticate_user!, raise: false, except: [:index, :show]
+
     def index
-        if params[:destination_id] && Place.exists?(:id => params[:destination_id])
+        if params[:destination_id] && Destination.exists?(:id => params[:destination_id])
             # need to create scope method here to find Place and Attractions
             @attractions = Attraction.where(:destination_id => params[:destination_id])
             @destination = Destination.find_by(:id => params[:destination_id])
@@ -20,16 +22,17 @@ class AttractionsController < ApplicationController
             @destination = @attraction.destination
         else
             flash[:notice] = "Incorrect URL."
-            redirect_to attraction
+            redirect_to attraction(attraction_id)
         end
     end
 
     def edit
         if params[:place_id]
             @attraction = Attraction.find_by(:id => params[:id])
-            @destination = @attraction.place
+            @destination = @attraction.destination
         else
             flash[:notice] = "Invalid URL."
+            redirect_to attraction_path(attraction)
         end
     end
 
@@ -45,7 +48,7 @@ class AttractionsController < ApplicationController
             end
         else
             flash[:notice] = "Invalid URL"
-            redirect_to places_path
+            redirect_to destinations_path
         end
     end
 
