@@ -74,7 +74,6 @@ class LegsController < ApplicationController
             redirect_to '/'
         else
             @vacation = @leg.vacation
-            Vacation.update_vacation_destinations(@leg, "delete")
             @leg.destroy
             flash[:notice] = "Leg Deleted."
             redirect_to vacation_path(@vacation)

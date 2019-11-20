@@ -12,16 +12,4 @@ class Vacation < ApplicationRecord
             nil
         end
     end
-
-    def self.update_vacation_destinations(leg, action)
-        destination_place = Destination.find_by(:id => leg.destination_id)
-        if destination_place.present?
-            if action == "create"
-                leg.vacation.destinations << destination_place
-            else action == "delete"
-                @leg_destination = Leg.find_by(:vacation_id => leg.vacation.id, :destination_id => destination_place.id)
-               Leg.delete(@leg_destination)
-            end
-        end
-    end
 end
