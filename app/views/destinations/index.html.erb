@@ -8,4 +8,6 @@
     <p><%= link_to "#{destination.city_name}, #{destination.state_name} #{destination.country_name}", destination_path(destination) %></p>
 <% end %>
 
+<% if user_signed_in? %>
 <%= link_to("Add New Destination", new_destination_path) %><br/>
+<% end %>
