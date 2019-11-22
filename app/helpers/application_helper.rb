@@ -1,7 +1,7 @@
 module ApplicationHelper
 
-    def self.place(place_id)
-        Place.find_by(:id => place_id)
+    def self.destination(destination_id)
+        Destination.find_by(:id => destination_id)
     end
 
     def self.attraction(object)
