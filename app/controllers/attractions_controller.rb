@@ -72,16 +72,12 @@ class AttractionsController < ApplicationController
     end
 
     def under20
-        if params[:destination_id]
+        if params[:destination_id] && Destination.exists?(:id => params[:destination_id])
             @attractions = Attraction.under_20(params[:destination_id])
             @destination = Destination.find_by(:id => params[:destination_id])
-            if !@destination_id.present?
-                flash[:alert] = "Destination not found."
-                redirect_to '/'
-            end
         else
-            @attractions = Attraction.all
-            redirect_to attractions_path
+            flash[:alert] = "Destination not found."
+            redirect_to '/'
         end
     end
 

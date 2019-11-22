@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :itinerary_items
 
-  get 'destinations/:place_id/attractions/over20', to: 'attractions#under20', :as => :under20
+  get 'destinations/:destination_id/attractions/under20', to: 'attractions#under20', :as => :under20
   get 'destinations/mine', to: 'destinations#my_destinations', :as => :user_destinations
 
   resources :destinations do
