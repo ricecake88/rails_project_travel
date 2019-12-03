@@ -5,7 +5,7 @@ class Destination < ApplicationRecord
     validates :city_name, presence: { message: 'cannot be blank.' }
     validates :country_name, presence: { message: 'cannot be blank.' }
     validates_uniqueness_of :city_name, scope: [:state_name, :country_name], message: 'already entered.'
-    validates_format_of :city_name, :country_name, :with => /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/
+    validates_format_of :city_name, :country_name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/
 
     def self.user_destinations(user)
 
@@ -18,6 +18,10 @@ class Destination < ApplicationRecord
             end
         end
         return user_destinations
+    end
+
+    def self.find_destination(city)
+        Destination.where(city_name: city)
     end
 
 end

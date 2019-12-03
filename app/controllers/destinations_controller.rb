@@ -2,7 +2,11 @@ class DestinationsController < ApplicationController
     before_action :authenticate_user!, raise: false, except: [:index, :show]
 
     def index
-        @destinations = Destination.all
+        if params[:city_name].present?
+            @destinations = Destination.find_destination(params[:city_name])
+        else
+            @destinations = Destination.all
+        end
     end
 
     def new

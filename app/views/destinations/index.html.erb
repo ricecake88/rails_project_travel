@@ -4,6 +4,12 @@
 
 <p>The Possibilities are Endless...</p>
 
+<%= form_tag(destinations_path, method: "get") do %>
+    <%= label_tag(:city_name, "Search for City:") %>
+    <%= text_field_tag(:city_name) %>
+    <%= submit_tag("Search") %>
+<% end %>
+
 <% @destinations.each do |destination| %>
     <p><%= link_to "#{destination.city_name}, #{destination.state_name} #{destination.country_name}", destination_path(destination) %></p>
 <% end %>
