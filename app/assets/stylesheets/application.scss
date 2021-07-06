@@ -22,18 +22,16 @@ body {
     background-color: whitesmoke;
 }
 
-
-
  .wrapper {
     width: 100%;
     margin: 0 auto;
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 10% 90% 10%;
-    grid-gap: 0px;
+    // display: grid;
+    // grid-template-columns: 100%;
+    // grid-template-rows: 10% 90% 10%;
+    // grid-gap: 0px;
     margin: 0 auto;
 }
 
@@ -41,12 +39,14 @@ body {
 .header {
     background-color: #86a3a9;
     background-image: asset-data-url('background.jpg');
-    height:250px;
+    border: 5px solid green;
+    height: 100%;
 }
 
 .logo {
     margin-left: 50px;
-    display: block;
+    display: relative;
+    
 }
 
 .logo .wave {
@@ -55,62 +55,75 @@ body {
     font-weight: 00;
     display: inline-block;
 }
-.logo > span:nth-child(1) {
-    font-size: 70pt;
-    top: -100pt;
-        -webkit-transform: rotate(-40deg);
-           -moz-transform: rotate(-40deg);
-            -ms-transform: rotate(-40deg);
-             -o-transform: rotate(-40deg);
-                transform: translate(20px, 10px) rotate(10deg);
-}
+// .logo > span:nth-child(1) {
+//     font-size: 70pt;
+//     top: -100pt;
+//         -webkit-transform: rotate(-40deg);
+//            -moz-transform: rotate(-40deg);
+//             -ms-transform: rotate(-40deg);
+//              -o-transform: rotate(-40deg);
+//                 transform: translate(20px, 10px) rotate(10deg);
+// }
 
-.logo > span:nth-child(2) {
-    font-size: 70pt;
-        -webkit-transform: rotate(-20deg);
-           -moz-transform: rotate(-20deg);
-            -ms-transform: rotate(-20deg);
-             -o-transform: rotate(-20deg);
-                transform: translate(25px, 20px) rotate(0deg);
-}
+// .logo > span:nth-child(2) {
+//     font-size: 70pt;
+//         -webkit-transform: rotate(-20deg);
+//            -moz-transform: rotate(-20deg);
+//             -ms-transform: rotate(-20deg);
+//              -o-transform: rotate(-20deg);
+//                 transform: translate(25px, 20px) rotate(0deg);
+// }
 
-.logo > span:nth-child(3) {
-    font-size: 74pt;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-     -ms-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-         transform: translate(30px, 20px) rotate(0deg);
-}
+// .logo > span:nth-child(3) {
+//     font-size: 74pt;
+//     -webkit-transform: rotate(0deg);
+//     -moz-transform: rotate(0deg);
+//      -ms-transform: rotate(0deg);
+//       -o-transform: rotate(0deg);
+//          transform: translate(30px, 20px) rotate(0deg);
+// }
 
-.logo > span:nth-child(4) {
-    font-size: 76pt;
-    -webkit-transform: rotate(-20deg);
-    -moz-transform: rotate(-20deg);
-     -ms-transform: rotate(-20deg);
-      -o-transform: rotate(-20deg);
-         transform: translate(45px, 12px) rotate(10deg);
-}
+// .logo > span:nth-child(4) {
+//     font-size: 76pt;
+//     -webkit-transform: rotate(-20deg);
+//     -moz-transform: rotate(-20deg);
+//      -ms-transform: rotate(-20deg);
+//       -o-transform: rotate(-20deg);
+//          transform: translate(45px, 12px) rotate(10deg);
+// }
 
-.logo > span:nth-child(5) {
-    font-size: 80pt;
-    -webkit-transform: rotate(-20deg);
-    -moz-transform: rotate(-20deg);
-     -ms-transform: rotate(-20deg);
-      -o-transform: rotate(-20deg);
-         transform: translate(65px) rotate(10deg);
+// .logo > span:nth-child(5) {
+//     font-size: 80pt;
+//     -webkit-transform: rotate(-20deg);
+//     -moz-transform: rotate(-20deg);
+//      -ms-transform: rotate(-20deg);
+//       -o-transform: rotate(-20deg);
+//          transform: translate(65px) rotate(10deg);
+// }
+// .logo > span:nth-child(6) {
+//     font-size: 86pt;
+//     -webkit-transform: rotate(-20deg);
+//     -moz-transform: rotate(-20deg);
+//      -ms-transform: rotate(-20deg);
+//       -o-transform: rotate(-20deg);
+//          transform: translate(70px, -5px)  rotate(-10deg);
+// }
+.logo .name {
+    font-size: 50px;
+    margin-left: 50px;
+    margin-top: 200px;
+    font-family: 'Oxygen Mono', monospace;
+    color: white;
 }
-.logo > span:nth-child(6) {
-    font-size: 86pt;
-    -webkit-transform: rotate(-20deg);
-    -moz-transform: rotate(-20deg);
-     -ms-transform: rotate(-20deg);
-      -o-transform: rotate(-20deg);
-         transform: translate(70px, -5px)  rotate(-10deg);
+.logo .caption {
+    font-size: 16px;
+    color:greenyellow;
+    margin-left: 75px;
+    margin-top: 10px;
 }
 #arrow {
     font-family: Courier, Sans-Serif;
-    size: 20pt;
+    font-size: 20pt;
 }
 #tag {
    font-family: 'Oxygen Mono', monospace;
@@ -133,10 +146,13 @@ body {
 .main {
     padding: 20px;
     font-family: Roboto, Sans-Serif; 
+    display: relative;
+    border: 5px solid red;
 }
 .nav {
     //border-top: 1px solid grey;
     //border-bottom: 1px solid grey;
+    display:relative;
 }
 .nav li {
     float: left;
